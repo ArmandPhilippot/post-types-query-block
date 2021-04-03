@@ -1,0 +1,18 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules
+vendor
+
+# Dotenv
+.env
+
+# Folders to ignore
+.vscode
+certs
+
+# Files to ignore
+*.map
+*.zip

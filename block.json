@@ -1,0 +1,15 @@
+{
+	"apiVersion": 2,
+	"name": "rptblock/recent-post-types",
+	"title": "Recent Post Types Block",
+	"description": "Display a list of posts including custom post types.",
+	"category": "widgets",
+	"icon": "text-page",
+	"textdomain": "RPTBlock",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

@@ -1,0 +1,37 @@
+{
+	"name": "armandphilippot/recent-post-types",
+	"description": "Display a list of posts including custom post types.",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Armand Philippot",
+			"email": "contact@armandphilippot.com",
+			"homepage": "https://www.armandphilippot.com/"
+		}
+	],
+	"homepage": "https://github.com/armandphilippot/recent-post-types-block#readme",
+	"support": {
+		"issues": "https://github.com/armandphilippot/recent-post-types-block/issues",
+		"source": "https://github.com/armandphilippot/recent-post-types-block"
+	},
+	"keywords": [
+		"WordPress",
+		"plugin",
+		"block"
+	],
+	"type": "wordpress-plugin",
+	"require": {
+		"composer/installers": "^1.9",
+		"vlucas/phpdotenv": "^5.3"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.3",
+		"squizlabs/php_codesniffer": "^3.5",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0"
+	},
+	"scripts": {
+		"lint": "phpcs --standard=WordPress",
+		"fix": "phpcbf --standard=WordPress"
+	}
+}
