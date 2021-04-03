@@ -9,6 +9,55 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"selectedPostTypes": {
+			"type": "array",
+			"item": {
+				"type": "object"
+			}
+		},
+		"selectedCategories": {
+			"type": "array"
+		},
+		"selectedTags": {
+			"type": "array"
+		},
+		"selectedAuthor": {
+			"type": "number"
+		},
+		"postsToDisplay": {
+			"type": "number",
+			"default": 5
+		},
+		"order": {
+			"type": "string",
+			"default": "date"
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "desc"
+		},
+		"displayPublicationDate": {
+			"type": "boolean",
+			"default": false
+		},
+		"displayUpdateDate": {
+			"type": "boolean",
+			"default": false
+		},
+		"displayAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"displayFeaturedImage": {
+			"type": "boolean",
+			"default": false
+		},
+		"displayExcerpt": {
+			"type": "boolean",
+			"default": false
+		}
+	},
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css"
