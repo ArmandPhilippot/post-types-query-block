@@ -420,27 +420,45 @@ function EditorSettings(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js");
+/* harmony import */ var _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
 
 
 function Filters(props) {
+  /**
+   * Retrieve the existing authors.
+   *
+   * @since 0.1.0
+   *
+   * @returns An array of author names.
+   */
   var getAuthorOptions = function getAuthorOptions() {
-    var authors = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])(function (select) {
+    var authors = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["useSelect"])(function (select) {
       return select('core').getAuthors();
     });
     var options = [{
       value: '',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('All', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('All', 'RPTBlock')
     }];
 
     if (authors) {
@@ -455,11 +473,117 @@ function Filters(props) {
     return options;
   };
 
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Filters', 'RPTBlock'),
+  var categories = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["useSelect"])(function (select) {
+    return select('core').getEntityRecords('taxonomy', 'category');
+  });
+  var tags = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__["useSelect"])(function (select) {
+    return select('core').getEntityRecords('taxonomy', 'post_tag');
+  });
+  /**
+   * Use the term names as suggestion.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} termArray An array of term objects like category or tag.
+   * @returns An array containing only terms name.
+   */
+
+  var getSuggestionFrom = function getSuggestionFrom(termArray) {
+    var suggestions = [];
+
+    if (termArray) {
+      suggestions = termArray.map(function (term) {
+        return term.name;
+      });
+    }
+
+    return suggestions;
+  };
+  /**
+   * Prevent the registration of non-existent terms.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} newArray Values obtained from the input.
+   * @param {Array} termArray The array of term objects to compare with.
+   * @returns An array containing only the existing terms.
+   */
+
+
+  var checkTermExistence = function checkTermExistence(newArray, termArray) {
+    var filteredTerms = termArray.filter(function (availableTerm) {
+      if (newArray.includes(availableTerm.name)) {
+        return newArray.includes(availableTerm.name);
+      } else if (newArray.some(function (term) {
+        return term.value === availableTerm.name;
+      })) {
+        return newArray;
+      }
+    });
+    return filteredTerms;
+  };
+  /**
+   * Transform an array of objects to comply with the expected format.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} objectsArray The array to modify.
+   * @returns An array of objects with a new property `value`.
+   */
+
+
+  var updateObjectProps = function updateObjectProps(objectsArray) {
+    var updatedArray = objectsArray.map(function (_ref) {
+      var name = _ref.name,
+          prevProps = _babel_runtime_helpers_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1___default()(_ref, ["name"]);
+
+      return _objectSpread(_objectSpread({}, prevProps), {}, {
+        name: name,
+        value: name
+      });
+    });
+    return updatedArray;
+  };
+  /**
+   * Register the new values inside the `selectedCategories` attribute.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} newArray Values obtained from the input.
+   * @param {Array} categoriesArray An array of category objects.
+   */
+
+
+  var onCategoriesChange = function onCategoriesChange(newArray, categoriesArray) {
+    var selectedCategories = checkTermExistence(newArray, categoriesArray);
+    var updatedCategories = updateObjectProps(selectedCategories);
+    props.setAttributes({
+      selectedCategories: updatedCategories
+    });
+  };
+  /**
+   * Register the new values inside the `selectedTags` attribute.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} newArray Values obtained from the input.
+   * @param {Array} tagsArray An array of tag objects.
+   */
+
+
+  var onTagsChange = function onTagsChange(newArray, tagsArray) {
+    var selectedTags = checkTermExistence(newArray, tagsArray);
+    var updatedTags = updateObjectProps(selectedTags);
+    props.setAttributes({
+      selectedTags: updatedTags
+    });
+  };
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Filters', 'RPTBlock'),
     initialOpen: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Author:', 'RPTBlock'),
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Author:', 'RPTBlock'),
     options: getAuthorOptions(),
     value: props.attributes.author,
     onChange: function onChange(value) {
@@ -467,6 +591,20 @@ function Filters(props) {
         author: value
       });
     }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["FormTokenField"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Categories:', 'RPTBlock'),
+    onChange: function onChange(newArray) {
+      return onCategoriesChange(newArray, categories);
+    },
+    suggestions: getSuggestionFrom(categories),
+    value: props.attributes.selectedCategories
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["FormTokenField"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Tags:', 'RPTBlock'),
+    onChange: function onChange(newArray) {
+      return onTagsChange(newArray, tags);
+    },
+    suggestions: getSuggestionFrom(tags),
+    value: props.attributes.selectedTags
   })));
 }
 

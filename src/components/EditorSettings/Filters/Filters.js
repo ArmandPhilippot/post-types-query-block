@@ -1,8 +1,20 @@
-import { PanelBody, PanelRow, SelectControl } from '@wordpress/components';
+import {
+	FormTokenField,
+	PanelBody,
+	PanelRow,
+	SelectControl,
+} from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 function Filters(props) {
+	/**
+	 * Retrieve the existing authors.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @returns An array of author names.
+	 */
 	const getAuthorOptions = () => {
 		const authors = useSelect(select => select('core').getAuthors());
 
@@ -20,6 +32,111 @@ function Filters(props) {
 		return options;
 	};
 
+	const categories = useSelect(select =>
+		select('core').getEntityRecords('taxonomy', 'category')
+	);
+
+	const tags = useSelect(select =>
+		select('core').getEntityRecords('taxonomy', 'post_tag')
+	);
+
+	/**
+	 * Use the term names as suggestion.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Array} termArray An array of term objects like category or tag.
+	 * @returns An array containing only terms name.
+	 */
+	const getSuggestionFrom = termArray => {
+		let suggestions = [];
+
+		if (termArray) {
+			suggestions = termArray.map(term => term.name);
+		}
+
+		return suggestions;
+	};
+
+	/**
+	 * Prevent the registration of non-existent terms.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Array} newArray Values obtained from the input.
+	 * @param {Array} termArray The array of term objects to compare with.
+	 * @returns An array containing only the existing terms.
+	 */
+	const checkTermExistence = (newArray, termArray) => {
+		const filteredTerms = termArray.filter(availableTerm => {
+			if (newArray.includes(availableTerm.name)) {
+				return newArray.includes(availableTerm.name);
+			} else if (
+				newArray.some(term => term.value === availableTerm.name)
+			) {
+				return newArray;
+			}
+		});
+		return filteredTerms;
+	};
+
+	/**
+	 * Transform an array of objects to comply with the expected format.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Array} objectsArray The array to modify.
+	 * @returns An array of objects with a new property `value`.
+	 */
+	const updateObjectProps = objectsArray => {
+		const updatedArray = objectsArray.map(({ name, ...prevProps }) => ({
+			...prevProps,
+			name: name,
+			value: name,
+		}));
+
+		return updatedArray;
+	};
+
+	/**
+	 * Register the new values inside the `selectedCategories` attribute.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Array} newArray Values obtained from the input.
+	 * @param {Array} categoriesArray An array of category objects.
+	 */
+	const onCategoriesChange = (newArray, categoriesArray) => {
+		const selectedCategories = checkTermExistence(
+			newArray,
+			categoriesArray
+		);
+
+		const updatedCategories = updateObjectProps(selectedCategories);
+
+		props.setAttributes({
+			selectedCategories: updatedCategories,
+		});
+	};
+
+	/**
+	 * Register the new values inside the `selectedTags` attribute.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Array} newArray Values obtained from the input.
+	 * @param {Array} tagsArray An array of tag objects.
+	 */
+	const onTagsChange = (newArray, tagsArray) => {
+		const selectedTags = checkTermExistence(newArray, tagsArray);
+
+		const updatedTags = updateObjectProps(selectedTags);
+
+		props.setAttributes({
+			selectedTags: updatedTags,
+		});
+	};
+
 	return (
 		<PanelBody title={__('Filters', 'RPTBlock')} initialOpen={false}>
 			<PanelRow>
@@ -32,6 +149,24 @@ function Filters(props) {
 							author: value,
 						})
 					}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<FormTokenField
+					label={__('Categories:', 'RPTBlock')}
+					onChange={newArray =>
+						onCategoriesChange(newArray, categories)
+					}
+					suggestions={getSuggestionFrom(categories)}
+					value={props.attributes.selectedCategories}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<FormTokenField
+					label={__('Tags:', 'RPTBlock')}
+					onChange={newArray => onTagsChange(newArray, tags)}
+					suggestions={getSuggestionFrom(tags)}
+					value={props.attributes.selectedTags}
 				/>
 			</PanelRow>
 		</PanelBody>
