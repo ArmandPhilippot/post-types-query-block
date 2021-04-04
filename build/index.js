@@ -571,7 +571,43 @@ function Sort(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Sort', 'RPTBlock'),
     initialOpen: false
-  }, "Select");
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order by', 'RPTBlock'),
+    options: [{
+      value: 'author',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'RPTBlock')
+    }, {
+      value: 'date',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'RPTBlock')
+    }, {
+      value: 'modified',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'RPTBlock')
+    }, {
+      value: 'title',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Title', 'RPTBlock')
+    }],
+    value: props.attributes.orderBy,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        orderBy: value
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order:', 'RPTBlock'),
+    options: [{
+      value: 'asc',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Ascending', 'RPTBlock')
+    }, {
+      value: 'desc',
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Descending', 'RPTBlock')
+    }],
+    value: props.attributes.order,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        order: value
+      });
+    }
+  })));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Sort);
