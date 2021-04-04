@@ -1,4 +1,9 @@
-import { FormTokenField, PanelBody, PanelRow } from '@wordpress/components';
+import {
+	FormTokenField,
+	PanelBody,
+	PanelRow,
+	RangeControl,
+} from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -60,6 +65,17 @@ function PostTypes(props) {
 					onChange={newArray => onChange(newArray)}
 					suggestions={getPostTypesSuggestion()}
 					value={props.attributes.selectedPostTypes}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<RangeControl
+					label={__('Number of posts to display:', 'RPTBlock')}
+					min={1}
+					max={30}
+					onChange={value =>
+						props.setAttributes({ postsToDisplay: value })
+					}
+					value={props.attributes.postsToDisplay}
 				/>
 			</PanelRow>
 		</PanelBody>

@@ -492,6 +492,16 @@ function PostTypes(props) {
     },
     suggestions: getPostTypesSuggestion(),
     value: props.attributes.selectedPostTypes
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["RangeControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Number of posts to display:', 'RPTBlock'),
+    min: 1,
+    max: 30,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        postsToDisplay: value
+      });
+    },
+    value: props.attributes.postsToDisplay
   })));
 }
 
