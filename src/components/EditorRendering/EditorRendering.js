@@ -17,6 +17,7 @@ function EditorRendering(props) {
 				per_page: props.attributes.postsToDisplay,
 				order: props.attributes.order,
 				orderby: props.attributes.orderBy,
+				author: props.attributes.author,
 			})
 		);
 
