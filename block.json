@@ -31,11 +31,11 @@
 		},
 		"order": {
 			"type": "string",
-			"default": "date"
+			"default": "desc"
 		},
 		"orderBy": {
 			"type": "string",
-			"default": "desc"
+			"default": "date"
 		},
 		"displayPublicationDate": {
 			"type": "boolean",

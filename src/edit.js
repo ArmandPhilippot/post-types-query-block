@@ -18,7 +18,7 @@ function Edit(props) {
 
 	return (
 		<div {...blockProps}>
-			<EditorRendering />
+			<EditorRendering attributes={props.attributes} />
 			<EditorSettings
 				attributes={props.attributes}
 				setAttributes={props.setAttributes}
