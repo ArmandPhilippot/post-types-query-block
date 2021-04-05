@@ -274,18 +274,58 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function EditorRendering(props) {
+  /**
+   * Filter an array of Term objects to obtain terms Id.
+   *
+   * @since 0.1.0
+   *
+   * @param {Array} termArray An array containing term objects.
+   * @returns An array of term ID.
+   */
+  var getSelectedTermsId = function getSelectedTermsId(termArray) {
+    var selectedTerms = termArray;
+    var selectedTermsId = [];
+
+    if (selectedTerms) {
+      selectedTermsId = selectedTerms.map(function (category) {
+        return category.id;
+      });
+    }
+
+    return selectedTermsId;
+  };
+  /**
+   * Get a list of posts by querying WordPress Rest API.
+   *
+   * @since 0.1.0
+   *
+   * @returns An array of posts.
+   */
+
+
   var getPostsList = function getPostsList() {
-    var selectedPostType = props.attributes.selectedPostType;
+    var categoriesId = getSelectedTermsId(props.attributes.selectedCategories);
+    var tagsId = getSelectedTermsId(props.attributes.selectedTags);
     var postsList = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["useSelect"])(function (select) {
-      return select('core').getEntityRecords('postType', selectedPostType, {
+      return select('core').getEntityRecords('postType', props.attributes.selectedPostType, {
         per_page: props.attributes.postsToDisplay,
         order: props.attributes.order,
         orderby: props.attributes.orderBy,
-        author: props.attributes.author
+        author: props.attributes.author,
+        categories: categoriesId,
+        tags: tagsId
       });
     });
     return postsList;
   };
+  /**
+   * Create the HTML markup to display the posts list.
+   *
+   * @since 0.1.0
+   *
+   * @returns An array of `li` element containing.
+   */
+
 
   var renderPostsList = function renderPostsList() {
     var postsList = getPostsList();
