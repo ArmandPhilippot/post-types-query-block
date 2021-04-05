@@ -270,10 +270,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/date */ "@wordpress/date");
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 
 function EditorRendering(props) {
+  var authorsList = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["useSelect"])(function (select) {
+    return select('core').getAuthors();
+  });
   /**
    * Filter an array of Term objects to obtain terms Id.
    *
@@ -282,6 +291,7 @@ function EditorRendering(props) {
    * @param {Array} termArray An array containing term objects.
    * @returns An array of term ID.
    */
+
   var getSelectedTermsId = function getSelectedTermsId(termArray) {
     var selectedTerms = termArray;
     var selectedTermsId = [];
@@ -319,6 +329,108 @@ function EditorRendering(props) {
     return postsList;
   };
   /**
+   * Get author from id.
+   *
+   * @since 0.1.0
+   *
+   * @param {Int} authorId Author Id.
+   * @returns An author object matching the id.
+   */
+
+
+  var getPostAuthor = function getPostAuthor(authorId) {
+    return authorsList.find(function (author) {
+      return author.id === authorId;
+    });
+  };
+  /**
+   * Determine if a read more link is present in content.
+   *
+   * @since 0.1.0
+   *
+   * @param {String} content The raw content of a post.
+   * @returns {Boolean} True if the content contains a read more link.
+   */
+
+
+  var isReadMore = function isReadMore(content) {
+    return content.includes('<!-- wp:more -->');
+  };
+  /**
+   * Retrieve the content before a read more link.
+   *
+   * @since 0.1.0
+   *
+   * @param {String} content The raw content obtained from a WP post object.
+   * @returns The sanitized content.
+   */
+
+
+  var getTeaser = function getTeaser(content) {
+    var splitContent = content.split('<!-- wp:more -->');
+    var contentElement = document.createElement('div');
+    contentElement.innerHTML = splitContent[0];
+    var sanitizedContent = contentElement.textContent || contentElement.innerText || '';
+    return sanitizedContent.trim();
+  };
+  /**
+   * Retrieve an excerpt ready to display.
+   *
+   * @since 0.1.0
+   *
+   * @param {String} excerpt The rendered excerpt obtained from a WP post object.
+   * @returns The sanitized excerpt.
+   */
+
+
+  var sanitizeExcerpt = function sanitizeExcerpt(excerpt) {
+    var excerptElement = document.createElement('div');
+    excerptElement.innerHTML = excerpt;
+    var moreLinkElements = excerptElement.getElementsByClassName('more-link');
+
+    while (moreLinkElements.length > 0) {
+      moreLinkElements[0].parentNode.removeChild(moreLinkElements[0]);
+    }
+
+    var sanitizedExcerpt = excerptElement.textContent || excerptElement.innerText || '';
+    return sanitizedExcerpt;
+  };
+  /**
+   * Retrieve the excerpt either from the generated excerpt or the content if a
+   * more link exists.
+   *
+   * @since 0.1.0
+   *
+   * @param {Object} postObject A WP post object.
+   * @returns The excerpt to display.
+   */
+
+
+  var getExcerpt = function getExcerpt(postObject) {
+    var content = '';
+
+    if (isReadMore(postObject.content.raw)) {
+      content = getTeaser(postObject.content.raw);
+    } else {
+      content = sanitizeExcerpt(postObject.excerpt.rendered);
+    }
+
+    return content.trim();
+  };
+  /**
+   * Check if the rendering requires a publication date, an update date or an
+   * author.
+   *
+   * @since 0.1.0
+   *
+   * @returns {Boolean} True if one of the corresponding data is checked.
+   */
+
+
+  var isMetadata = function isMetadata() {
+    return props.attributes.displayPublicationDate || props.attributes.displayUpdateDate || props.attributes.displayAuthor;
+  };
+  /**
    * Create the HTML markup to display the posts list.
    *
    * @since 0.1.0
@@ -329,13 +441,22 @@ function EditorRendering(props) {
 
   var renderPostsList = function renderPostsList() {
     var postsList = getPostsList();
+
+    var dateFormat = Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["__experimentalGetSettings"])().formats.date;
+
     var postsListMarkup = [];
+    console.log(postsList);
 
     if (postsList) {
       postsList.forEach(function (post) {
+        console.log(post);
         postsListMarkup.push(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
           href: post.link
-        }, post.title.raw)));
+        }, post.title.raw), isMetadata() && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dl", null, props.attributes.displayPublicationDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date:', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
+          dateTime: Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])('c', post.date_gmt)
+        }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["dateI18n"])(dateFormat, post.date_gmt)))), props.attributes.displayUpdateDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date:', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
+          dateTime: Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])('c', post.modified_gmt)
+        }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["dateI18n"])(dateFormat, post.modified_gmt)))), props.attributes.displayAuthor && getPostAuthor(post.author) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author:', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", null, getPostAuthor(post.author).name))), props.attributes.displayExcerpt && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, getExcerpt(post))));
       });
     }
 
@@ -372,7 +493,47 @@ function AdditionalData(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Additional Data', 'RPTBlock'),
     initialOpen: false
-  }, "Select");
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Select the additional data you want to display.', 'RPTBlock'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'RPTBlock'),
+    checked: props.attributes.displayPublicationDate,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        displayPublicationDate: value
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'RPTBlock'),
+    checked: props.attributes.displayUpdateDate,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        displayUpdateDate: value
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'RPTBlock'),
+    checked: props.attributes.displayAuthor,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        displayAuthor: value
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Featured image', 'RPTBlock'),
+    checked: props.attributes.displayFeaturedImage,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        displayFeaturedImage: value
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Post excerpt', 'RPTBlock'),
+    checked: props.attributes.displayExcerpt,
+    onChange: function onChange(value) {
+      return props.setAttributes({
+        displayExcerpt: value
+      });
+    }
+  })))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (AdditionalData);
@@ -963,6 +1124,17 @@ function Save() {
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["data"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/date":
+/*!******************************!*\
+  !*** external ["wp","date"] ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["date"]; }());
 
 /***/ }),
 
