@@ -450,7 +450,9 @@ function EditorRendering(props) {
     if (postsList) {
       postsList.forEach(function (post) {
         console.log(post);
-        postsListMarkup.push(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+        postsListMarkup.push(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", {
+          key: post.id
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
           href: post.link
         }, post.title.raw), isMetadata() && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dl", null, props.attributes.displayPublicationDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date:', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
           dateTime: Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])('c', post.date_gmt)
@@ -493,7 +495,7 @@ function AdditionalData(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Additional Data', 'RPTBlock'),
     initialOpen: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Select the additional data you want to display.', 'RPTBlock'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Select the additional data you want to display.', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'RPTBlock'),
     checked: props.attributes.displayPublicationDate,
     onChange: function onChange(value) {
@@ -501,7 +503,7 @@ function AdditionalData(props) {
         displayPublicationDate: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'RPTBlock'),
     checked: props.attributes.displayUpdateDate,
     onChange: function onChange(value) {
@@ -509,7 +511,7 @@ function AdditionalData(props) {
         displayUpdateDate: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'RPTBlock'),
     checked: props.attributes.displayAuthor,
     onChange: function onChange(value) {
@@ -517,7 +519,7 @@ function AdditionalData(props) {
         displayAuthor: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Featured image', 'RPTBlock'),
     checked: props.attributes.displayFeaturedImage,
     onChange: function onChange(value) {
@@ -525,7 +527,7 @@ function AdditionalData(props) {
         displayFeaturedImage: value
       });
     }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
     label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Post excerpt', 'RPTBlock'),
     checked: props.attributes.displayExcerpt,
     onChange: function onChange(value) {
@@ -533,7 +535,7 @@ function AdditionalData(props) {
         displayExcerpt: value
       });
     }
-  })))));
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (AdditionalData);

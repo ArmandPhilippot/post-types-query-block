@@ -178,7 +178,7 @@ function EditorRendering(props) {
 			postsList.forEach(post => {
 				console.log(post);
 				postsListMarkup.push(
-					<li>
+					<li key={post.id}>
 						<a href={post.link}>{post.title.raw}</a>
 						{isMetadata() && (
 							<dl>
