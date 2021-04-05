@@ -10,11 +10,9 @@
 		"html": false
 	},
 	"attributes": {
-		"selectedPostTypes": {
-			"type": "array",
-			"item": {
-				"type": "object"
-			}
+		"selectedPostType": {
+			"type": "string",
+			"default": "post"
 		},
 		"selectedCategories": {
 			"type": "array"

@@ -2,18 +2,9 @@ import { useSelect } from '@wordpress/data';
 
 function EditorRendering(props) {
 	const getPostsList = () => {
-		const selectedPostTypes = props.attributes.selectedPostTypes;
-		let postsList = [];
-		let postTypeSlug = 'post';
-
-		if (selectedPostTypes && selectedPostTypes.length === 1) {
-			selectedPostTypes.forEach(postType => {
-				postTypeSlug = postType.slug;
-			});
-		}
-
-		postsList = useSelect(select =>
-			select('core').getEntityRecords('postType', postTypeSlug, {
+		const selectedPostType = props.attributes.selectedPostType;
+		const postsList = useSelect(select =>
+			select('core').getEntityRecords('postType', selectedPostType, {
 				per_page: props.attributes.postsToDisplay,
 				order: props.attributes.order,
 				orderby: props.attributes.orderBy,

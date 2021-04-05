@@ -1,8 +1,8 @@
 import {
-	FormTokenField,
 	PanelBody,
 	PanelRow,
 	RangeControl,
+	SelectControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
@@ -15,56 +15,38 @@ import { __ } from '@wordpress/i18n';
  * @returns {WPElement} Element to render.
  */
 function PostTypes(props) {
-	const availablePosTypes = useSelect(select =>
-		select('core').getPostTypes()
-	);
-
-	const getPostTypesSuggestion = () => {
-		let suggestedPostTypes = [];
+	const getPostTypesOptions = () => {
+		const availablePosTypes = useSelect(select =>
+			select('core').getPostTypes()
+		);
+		let filteredPostTypes = [];
+		let postTypesOptions = [];
 
 		if (availablePosTypes) {
-			suggestedPostTypes = availablePosTypes.map(
-				postType => postType.name
+			filteredPostTypes = availablePosTypes.filter(
+				postType => postType.rest_base !== 'blocks'
 			);
+			postTypesOptions = filteredPostTypes.map(postType => ({
+				label: postType.name,
+				value: postType.slug,
+			}));
 		}
 
-		return suggestedPostTypes;
-	};
-
-	const onChange = postTypesArray => {
-		const selectedPostTypes = availablePosTypes.filter(availablePosType => {
-			if (postTypesArray.includes(availablePosType.name)) {
-				return postTypesArray.includes(availablePosType.name);
-			} else if (
-				postTypesArray.some(
-					postType => postType.value === availablePosType.name
-				)
-			) {
-				return postTypesArray;
-			}
-		});
-
-		const updatedPostTypes = selectedPostTypes.map(
-			({ name, ...prevProps }) => ({
-				...prevProps,
-				name: name,
-				value: name,
-			})
-		);
-
-		props.setAttributes({
-			selectedPostTypes: updatedPostTypes,
-		});
+		return postTypesOptions;
 	};
 
 	return (
 		<PanelBody title={__('Post Types', 'RPTBlock')} initialOpen={true}>
 			<PanelRow>
-				<FormTokenField
-					label={__('Select post types to use:', 'RPTBlock')}
-					onChange={newArray => onChange(newArray)}
-					suggestions={getPostTypesSuggestion()}
-					value={props.attributes.selectedPostTypes}
+				<SelectControl
+					label={__('Post type to display:', 'RPTBlock')}
+					onChange={value =>
+						props.setAttributes({
+							selectedPostType: value,
+						})
+					}
+					options={getPostTypesOptions()}
+					value={props.attributes.selectedPostType}
 				/>
 			</PanelRow>
 			<PanelRow>
