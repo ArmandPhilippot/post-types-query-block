@@ -53,12 +53,118 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 /**
+ * Render the RPT Block on server.
+ *
+ * @param array $attributes The block attributes.
+ * @return string Returns the post content with block added.
+ */
+function rptblock_render_post_types_block( $attributes ) {
+	$query_args = array(
+		'query_label'         => 'rptblock_query',
+		'ignore_sticky_posts' => true,
+		'posts_per_page'      => $attributes['postsToDisplay'],
+		'no_found_rows'       => true,
+		'post_status'         => 'publish',
+		'post_type'           => $attributes['selectedPostType'],
+		'order'               => $attributes['order'],
+		'orderby'             => $attributes['orderBy'],
+		'suppress_filters'    => false,
+	);
+
+	if ( $attributes['selectedAuthor'] ) {
+		$query_args += array( 'author' => $attributes['selectedAuthor'] );
+	}
+
+	if ( $attributes['selectedCategories'] ) {
+		$selected_categories = array();
+
+		foreach ( $attributes['selectedCategories'] as $category ) {
+			$selected_categories[] = $category['id'];
+		}
+
+		$query_args += array( 'category__in' => $selected_categories );
+	}
+
+	if ( $attributes['selectedTags'] ) {
+		$selected_tags = array();
+
+		foreach ( $attributes['selectedTags'] as $tag ) {
+			$selected_tags[] = $tag['id'];
+		}
+
+		$query_args += array( 'tag__in' => $selected_tags );
+	}
+
+	$post_types_query = get_posts( $query_args );
+
+	$list_items_markup = '<ul>';
+
+	foreach ( $post_types_query as $post ) {
+		$post_link  = esc_url( get_permalink( $post ) );
+		$post_title = get_the_title( $post );
+
+		$list_items_markup .= '<li>';
+
+		if ( $attributes['displayFeaturedImage'] && has_post_thumbnail( $post ) ) {
+			$list_items_markup .= get_the_post_thumbnail( $post );
+		}
+
+		$list_items_markup .= sprintf(
+			'<a href="%1$s">%2$s</a>',
+			$post_link,
+			$post_title
+		);
+
+		if ( $attributes['displayPublicationDate'] || $attributes['displayUpdateDate'] || $attributes['displayAuthor'] ) {
+			$post_meta_markup = '<dl>';
+
+			if ( $attributes['displayPublicationDate'] ) {
+				$post_meta_markup .= '<dt>' . esc_html__( 'Published at', 'RPTBlock' ) . '</dt>';
+				$post_meta_markup .= '<dd>' . get_the_date( '', $post ) . '</dd>';
+			}
+
+			if ( $attributes['displayUpdateDate'] ) {
+				$post_meta_markup .= '<dt>' . esc_html__( 'Updated at', 'RPTBlock' ) . '</dt>';
+				$post_meta_markup .= '<dd>' . get_the_modified_date( '', $post ) . '</dd>';
+			}
+
+			if ( $attributes['displayAuthor'] ) {
+				$post_meta_markup .= '<dt>' . esc_html__( 'Author:', 'RPTBlock' ) . '</dt>';
+				$post_meta_markup .= '<dd>' . get_the_author() . '</dd>';
+			}
+
+			$post_meta_markup  .= '</dl>';
+			$list_items_markup .= $post_meta_markup;
+		}
+
+		if ( $attributes['displayExcerpt'] ) {
+			$list_items_markup .= get_the_content( '', true, $post );
+		}
+
+		$list_items_markup .= "</li>\n";
+	}
+
+	$list_items_markup .= '</ul>';
+
+	$wrapper_attributes = get_block_wrapper_attributes();
+
+	return sprintf(
+		'<div %1$s>%2$s</div>',
+		$wrapper_attributes,
+		$list_items_markup
+	);
+}
+
+/**
  * Register the block using the metadata loaded from `block.json` file.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
  * @since 0.1.0
  */
 function rptblock_block_init() {
-	register_block_type_from_metadata( __DIR__ );
+	register_block_type_from_metadata(
+		__DIR__,
+		array( 'render_callback' => 'rptblock_render_post_types_block' )
+	);
 }
 add_action( 'init', 'rptblock_block_init' );

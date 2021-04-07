@@ -1,6 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
 import Edit from './edit';
-import Save from './save';
 import './style.scss';
 
 /**
@@ -12,5 +11,5 @@ import './style.scss';
 registerBlockType('rptblock/recent-post-types', {
 	apiVersion: 2,
 	edit: Edit,
-	save: Save,
+	save: () => null,
 });
