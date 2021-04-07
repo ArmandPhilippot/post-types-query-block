@@ -143,10 +143,10 @@ function Filters(props) {
 				<SelectControl
 					label={__('Author:', 'RPTBlock')}
 					options={getAuthorOptions()}
-					value={props.attributes.author}
+					value={props.attributes.selectedAuthor}
 					onChange={value =>
 						props.setAttributes({
-							author: value,
+							selectedAuthor: value,
 						})
 					}
 				/>
