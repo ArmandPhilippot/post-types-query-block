@@ -28,19 +28,19 @@ function PostDetails(props) {
 	} = props.attributes;
 
 	return (
-		<PanelBody title={__('Posts details', 'RPTBlock')} initialOpen={false}>
+		<PanelBody title={__('Posts details', 'PTQBlock')} initialOpen={false}>
 			<PanelRow>
-				<fieldset className='rptblock-controls__fieldset'>
-					<legend className='rptblock-controls__legend'>
+				<fieldset className='ptqblock-controls__fieldset'>
+					<legend className='ptqblock-controls__legend'>
 						{__(
 							'Select the information you want to display.',
-							'RPTBlock'
+							'PTQBlock'
 						)}
 					</legend>
-					<fieldset className='rptblock-controls__fieldset'>
+					<fieldset className='ptqblock-controls__fieldset'>
 						<legend>
 							<CheckboxControl
-								label={__('Publication date', 'RPTBlock')}
+								label={__('Publication date', 'PTQBlock')}
 								checked={displayPublicationDate}
 								onChange={value =>
 									props.setAttributes({
@@ -54,7 +54,7 @@ function PostDetails(props) {
 								<CheckboxControl
 									label={__(
 										'Hide publication date label?',
-										'RPTBlock'
+										'PTQBlock'
 									)}
 									checked={hidePublicationDateLabel}
 									onChange={value =>
@@ -67,7 +67,7 @@ function PostDetails(props) {
 									<TextControl
 										label={__(
 											'Replace publication date label',
-											'RPTBlock'
+											'PTQBlock'
 										)}
 										value={publicationDateLabel}
 										onChange={value =>
@@ -80,10 +80,10 @@ function PostDetails(props) {
 							</div>
 						)}
 					</fieldset>
-					<fieldset className='rptblock-controls__fieldset'>
+					<fieldset className='ptqblock-controls__fieldset'>
 						<legend>
 							<CheckboxControl
-								label={__('Update date', 'RPTBlock')}
+								label={__('Update date', 'PTQBlock')}
 								checked={displayUpdateDate}
 								onChange={value =>
 									props.setAttributes({
@@ -97,7 +97,7 @@ function PostDetails(props) {
 								<CheckboxControl
 									label={__(
 										'Hide update date label?',
-										'RPTBlock'
+										'PTQBlock'
 									)}
 									checked={hideUpdateDateLabel}
 									onChange={value =>
@@ -110,7 +110,7 @@ function PostDetails(props) {
 									<TextControl
 										label={__(
 											'Replace update date label',
-											'RPTBlock'
+											'PTQBlock'
 										)}
 										value={updateDateLabel}
 										onChange={value =>
@@ -123,10 +123,10 @@ function PostDetails(props) {
 							</div>
 						)}
 					</fieldset>
-					<fieldset className='rptblock-controls__fieldset'>
+					<fieldset className='ptqblock-controls__fieldset'>
 						<legend>
 							<CheckboxControl
-								label={__('Author', 'RPTBlock')}
+								label={__('Author', 'PTQBlock')}
 								checked={displayAuthor}
 								onChange={value =>
 									props.setAttributes({
@@ -138,7 +138,7 @@ function PostDetails(props) {
 						{displayAuthor && (
 							<div>
 								<CheckboxControl
-									label={__('Hide author label?', 'RPTBlock')}
+									label={__('Hide author label?', 'PTQBlock')}
 									checked={hideAuthorLabel}
 									onChange={value =>
 										props.setAttributes({
@@ -150,7 +150,7 @@ function PostDetails(props) {
 									<TextControl
 										label={__(
 											'Replace author label',
-											'RPTBlock'
+											'PTQBlock'
 										)}
 										value={authorLabel}
 										onChange={value =>
@@ -164,7 +164,7 @@ function PostDetails(props) {
 						)}
 					</fieldset>
 					<CheckboxControl
-						label={__('Post excerpt', 'RPTBlock')}
+						label={__('Post excerpt', 'PTQBlock')}
 						checked={displayExcerpt}
 						onChange={value =>
 							props.setAttributes({

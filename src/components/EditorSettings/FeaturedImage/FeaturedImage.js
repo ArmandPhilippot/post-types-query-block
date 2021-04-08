@@ -55,14 +55,14 @@ function FeaturedImage(props) {
 	});
 
 	return (
-		<PanelBody title={__('Featured image', 'RPTBlock')} initialOpen={false}>
+		<PanelBody title={__('Featured image', 'PTQBlock')} initialOpen={false}>
 			<PanelRow>
 				<ToggleControl
-					label={__('Display featured image', 'RPTBlock')}
+					label={__('Display featured image', 'PTQBlock')}
 					help={
 						displayFeaturedImage
-							? __('Has featured image.', 'RPTBlock')
-							: __('No featured image.', 'RPTBlock')
+							? __('Has featured image.', 'PTQBlock')
+							: __('No featured image.', 'PTQBlock')
 					}
 					checked={displayFeaturedImage}
 					onChange={value =>
@@ -75,7 +75,7 @@ function FeaturedImage(props) {
 			{displayFeaturedImage && (
 				<PanelRow>
 					<fieldset>
-						<legend className='rptblock-controls__legend'>
+						<legend className='ptqblock-controls__legend'>
 							{__('Define the featured image appearance:')}
 						</legend>
 						<ImageSizeControl
@@ -105,7 +105,7 @@ function FeaturedImage(props) {
 						/>
 						<BaseControl>
 							<BaseControl.VisualLabel>
-								{__('Image alignment', 'RPTBlock')}
+								{__('Image alignment', 'PTQBlock')}
 							</BaseControl.VisualLabel>
 							<BlockAlignmentToolbar
 								controls={['left', 'center', 'right']}

@@ -36,10 +36,10 @@ function PostTypes(props) {
 	};
 
 	return (
-		<PanelBody title={__('Post Types', 'RPTBlock')} initialOpen={true}>
+		<PanelBody title={__('Post Types', 'PTQBlock')} initialOpen={true}>
 			<PanelRow>
 				<SelectControl
-					label={__('Post type to display:', 'RPTBlock')}
+					label={__('Post type to display:', 'PTQBlock')}
 					onChange={value =>
 						props.setAttributes({
 							selectedPostType: value,
@@ -51,7 +51,7 @@ function PostTypes(props) {
 			</PanelRow>
 			<PanelRow>
 				<RangeControl
-					label={__('Number of posts to display:', 'RPTBlock')}
+					label={__('Number of posts to display:', 'PTQBlock')}
 					min={1}
 					max={30}
 					onChange={value =>

@@ -4,7 +4,7 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.rptblock-controls {
+.ptqblock-controls {
 	&__legend {
 		margin-bottom: 1em;
 	}
@@ -27,8 +27,8 @@
 	}
 }
 
-.wp-block-rptblock-recent-post-types {
-	.rptblock {
+.wp-block-ptqblock-post-types-query {
+	.ptqblock {
 		&__featured-image-wrapper {
 			margin-bottom: 0.5em;
 
@@ -68,7 +68,7 @@
 	}
 
 	&.has-featured-image {
-		.rptblock {
+		.ptqblock {
 			&__item {
 				clear: both;
 

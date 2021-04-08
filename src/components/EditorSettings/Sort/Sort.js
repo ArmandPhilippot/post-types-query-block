@@ -3,26 +3,26 @@ import { __ } from '@wordpress/i18n';
 
 function Sort(props) {
 	return (
-		<PanelBody title={__('Sort', 'RPTBlock')} initialOpen={false}>
+		<PanelBody title={__('Sort', 'PTQBlock')} initialOpen={false}>
 			<PanelRow>
 				<SelectControl
-					label={__('Order by', 'RPTBlock')}
+					label={__('Order by', 'PTQBlock')}
 					options={[
 						{
 							value: 'author',
-							label: __('Author', 'RPTBlock'),
+							label: __('Author', 'PTQBlock'),
 						},
 						{
 							value: 'date',
-							label: __('Publication date', 'RPTBlock'),
+							label: __('Publication date', 'PTQBlock'),
 						},
 						{
 							value: 'modified',
-							label: __('Update date', 'RPTBlock'),
+							label: __('Update date', 'PTQBlock'),
 						},
 						{
 							value: 'title',
-							label: __('Title', 'RPTBlock'),
+							label: __('Title', 'PTQBlock'),
 						},
 					]}
 					value={props.attributes.orderBy}
@@ -35,15 +35,15 @@ function Sort(props) {
 			</PanelRow>
 			<PanelRow>
 				<SelectControl
-					label={__('Order:', 'RPTBlock')}
+					label={__('Order:', 'PTQBlock')}
 					options={[
 						{
 							value: 'asc',
-							label: __('Ascending', 'RPTBlock'),
+							label: __('Ascending', 'PTQBlock'),
 						},
 						{
 							value: 'desc',
-							label: __('Descending', 'RPTBlock'),
+							label: __('Descending', 'PTQBlock'),
 						},
 					]}
 					value={props.attributes.order}

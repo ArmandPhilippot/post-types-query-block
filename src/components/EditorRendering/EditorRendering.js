@@ -8,7 +8,7 @@ import PostMeta from './PostMeta/PostMeta';
 import classnames from 'classnames';
 
 /**
- * Render a Recent_Post_Types block in the editor.
+ * Render a Post_Types_Query block in the editor.
  *
  * @since 0.1.0
  *
@@ -38,7 +38,7 @@ function EditorRendering(props) {
 	} = props.attributes;
 	const blockProps = useBlockProps({
 		className: classnames({
-			rptblock__list: true,
+			ptqblock__list: true,
 			'has-dates': displayPublicationDate || displayUpdateDate,
 			'has-author': displayAuthor,
 			'has-excerpt': displayExcerpt,
@@ -143,12 +143,12 @@ function EditorRendering(props) {
 			<div {...blockProps}>
 				<Placeholder
 					icon={postList}
-					label={__('Recent Posts Types', 'RPTBlock')}
+					label={__('Recent Posts Types', 'PTQBlock')}
 				>
 					{!Array.isArray(postsList) ? (
 						<Spinner />
 					) : (
-						__('No posts found.', 'RPTBlock')
+						__('No posts found.', 'PTQBlock')
 					)}
 				</Placeholder>
 			</div>
@@ -159,19 +159,19 @@ function EditorRendering(props) {
 		<ul {...blockProps}>
 			{postsList.map((post, i) => {
 				return (
-					<li key={i} className='rptblock__item'>
+					<li key={i} className='ptqblock__item'>
 						{displayFeaturedImage && post.featured_image && (
 							<div
 								className={
 									featuredImageAlignment
-										? `rptblock__featured-image-wrapper align${featuredImageAlignment}`
-										: 'rptblock__featured-image-wrapper'
+										? `ptqblock__featured-image-wrapper align${featuredImageAlignment}`
+										: 'ptqblock__featured-image-wrapper'
 								}
 							>
 								<img
 									src={getFeaturedImageSourceUrl(post)}
 									alt={post.featured_image.alt_text}
-									className='rptblock__featured-image'
+									className='ptqblock__featured-image'
 									style={{
 										maxWidth: featuredImageWidth,
 										maxHeight: featuredImageHeight,
@@ -179,7 +179,7 @@ function EditorRendering(props) {
 								/>
 							</div>
 						)}
-						<a href={post.link} className='rptblock__link'>
+						<a href={post.link} className='ptqblock__link'>
 							{post.title.raw
 								? post.title.raw
 								: post.title.rendered}
@@ -191,7 +191,7 @@ function EditorRendering(props) {
 							/>
 						)}
 						{displayExcerpt && post.content && (
-							<div className='rptblock__content'>
+							<div className='ptqblock__content'>
 								<Excerpt {...post} />
 							</div>
 						)}

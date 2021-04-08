@@ -1,6 +1,6 @@
 {
-	"name": "armandphilippot/recent-post-types",
-	"description": "Display a list of posts including custom post types.",
+	"name": "armandphilippot/post-types-query",
+	"description": "Display a list of posts based on (custom) post types.",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
@@ -9,10 +9,10 @@
 			"homepage": "https://www.armandphilippot.com/"
 		}
 	],
-	"homepage": "https://github.com/armandphilippot/recent-post-types-block#readme",
+	"homepage": "https://github.com/armandphilippot/post-types-query-block#readme",
 	"support": {
-		"issues": "https://github.com/armandphilippot/recent-post-types-block/issues",
-		"source": "https://github.com/armandphilippot/recent-post-types-block"
+		"issues": "https://github.com/armandphilippot/post-types-query-block/issues",
+		"source": "https://github.com/armandphilippot/post-types-query-block"
 	},
 	"keywords": [
 		"WordPress",

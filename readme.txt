@@ -1,4 +1,4 @@
-=== Recent Post Types Block ===
+=== Post Types Query Block ===
 Contributors: aruphi
 Donate link:
 Tags: block
@@ -9,4 +9,4 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display a list of posts including custom post types.
+Display a list of posts based on (custom) post types.

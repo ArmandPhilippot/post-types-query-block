@@ -1,16 +1,16 @@
 {
-	"name": "recent-post-types",
+	"name": "post-types-query",
 	"version": "0.1.0",
-	"description": "Display a list of posts including custom post types.",
+	"description": "Display a list of posts based on (custom) post types.",
 	"author": "Armand Philippot",
 	"license": "GPL-2.0-or-later",
-	"homepage": "https://github.com/armandphilippot/recent-post-types-block#readme",
+	"homepage": "https://github.com/armandphilippot/post-types-query-block#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/armandphilippot/recent-post-types-block.git"
+		"url": "git+https://github.com/armandphilippot/post-types-query-block.git"
 	},
 	"bugs": {
-		"url": "https://github.com/armandphilippot/recent-post-types-block/issues"
+		"url": "https://github.com/armandphilippot/post-types-query-block/issues"
 	},
 	"keywords": [
 		"WordPress",
@@ -24,7 +24,7 @@
 		"init": "gulp initBlock && gulp renameFiles",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
-		"make-pot": "wp i18n make-pot . languages/recent-post-types.pot --exclude=vendor/ --skip-js",
+		"make-pot": "wp i18n make-pot . languages/post-types-query.pot --exclude=vendor/ --skip-js",
 		"packages-update": "wp-scripts packages-update",
 		"release": "standard-version -a",
 		"start": "wp-scripts start",

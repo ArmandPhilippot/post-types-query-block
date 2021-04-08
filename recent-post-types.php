@@ -1,11 +1,11 @@
 <?php
 /**
- * Recent_Post_Types
+ * Post_Types_Query
  *
- * Display a list of posts including custom post types.
+ * Display a list of posts based on (custom) post types.
  *
- * @package   Recent_Post_Types
- * @link      https://github.com/armandphilippot/recent-post-types-block
+ * @package   Post_Types_Query
+ * @link      https://github.com/armandphilippot/post-types-query-block
  * @author    Armand Philippot <contact@armandphilippot.com>
  *
  * @copyright 2021 Armand Philippot
@@ -13,9 +13,9 @@
  * @since     0.1.0
  *
  * @wordpress-plugin
- * Plugin Name:       Recent Post Types Block
- * Plugin URI:        https://github.com/armandphilippot/recent-post-types-block
- * Description:       Display a list of posts including custom post types.
+ * Plugin Name:       Post Types Query Block
+ * Plugin URI:        https://github.com/armandphilippot/post-types-query-block
+ * Description:       Display a list of posts based on (custom) post types.
  * Version:           0.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -23,7 +23,7 @@
  * Author URI:        https://www.armandphilippot.com/
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       RPTBlock
+ * Text Domain:       PTQBlock
  * Domain Path:       /languages
  */
 
@@ -37,17 +37,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'RPTBLOCK_VERSION', '0.1.0' );
+define( 'PTQBLOCK_VERSION', '0.1.0' );
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 
-	$rptblock_dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
-	$rptblock_dotenv->safeLoad();
-	$rptblock_current_env = $_ENV['WP_BLOCK_ENV'];
+	$ptqblock_dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
+	$ptqblock_dotenv->safeLoad();
+	$ptqblock_current_env = $_ENV['WP_BLOCK_ENV'];
 
-	if ( 'development' === $rptblock_current_env ) {
-		wp_register_script( 'livereload', 'http://localhost:35729/livereload.js', array(), RPTBLOCK_VERSION, true );
+	if ( 'development' === $ptqblock_current_env ) {
+		wp_register_script( 'livereload', 'http://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
 		wp_enqueue_script( 'livereload' );
 	}
 }
@@ -58,9 +58,9 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * @param array $attributes The block attributes.
  * @return string Returns the post content with block added.
  */
-function rptblock_render_post_types_block( $attributes ) {
+function ptqblock_render_post_types_block( $attributes ) {
 	$query_args = array(
-		'query_label'         => 'rptblock_query',
+		'query_label'         => 'ptqblock_query',
 		'ignore_sticky_posts' => true,
 		'posts_per_page'      => $attributes['postsToDisplay'],
 		'no_found_rows'       => true,
@@ -103,7 +103,7 @@ function rptblock_render_post_types_block( $attributes ) {
 		$post_link  = esc_url( get_permalink( $post ) );
 		$post_title = get_the_title( $post );
 
-		$list_items_markup .= '<li class="wp-block-rptblock__item">';
+		$list_items_markup .= '<li class="wp-block-ptqblock__item">';
 
 		if ( $attributes['displayFeaturedImage'] && has_post_thumbnail( $post ) ) {
 			$image_sizes = '';
@@ -122,7 +122,7 @@ function rptblock_render_post_types_block( $attributes ) {
 				)
 			);
 
-			$featured_image_classes = 'wp-block-rptblock__featured-image';
+			$featured_image_classes = 'wp-block-ptqblock__featured-image';
 			if ( isset( $attributes['featuredImageAlignment'] ) ) {
 				$featured_image_classes .= ' align' . $attributes['featuredImageAlignment'];
 			}
@@ -135,18 +135,18 @@ function rptblock_render_post_types_block( $attributes ) {
 		}
 
 		$list_items_markup .= sprintf(
-			'<a href="%1$s" class="wp-block-rptblock__link">%2$s</a>',
+			'<a href="%1$s" class="wp-block-ptqblock__link">%2$s</a>',
 			$post_link,
 			$post_title
 		);
 
 		if ( $attributes['displayPublicationDate'] || $attributes['displayUpdateDate'] || $attributes['displayAuthor'] ) {
-			$post_meta_markup = '<dl class="wp-block-rptblock__meta">';
+			$post_meta_markup = '<dl class="wp-block-ptqblock__meta">';
 
 			if ( $attributes['displayPublicationDate'] ) {
-				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<div class="wp-block-ptqblock__meta-item">';
 
-				$publication_date_term_classes = 'wp-block-rptblock__meta-term';
+				$publication_date_term_classes = 'wp-block-ptqblock__meta-term';
 
 				if ( $attributes['hidePublicationDateLabel'] ) {
 					$publication_date_term_classes .= ' screen-reader-text';
@@ -157,17 +157,17 @@ function rptblock_render_post_types_block( $attributes ) {
 				if ( $attributes['publicationDateLabel'] ) {
 					$post_meta_markup .= $attributes['publicationDateLabel'];
 				} else {
-					$post_meta_markup .= esc_html__( 'Published on:', 'RPTBlock' );
+					$post_meta_markup .= esc_html__( 'Published on:', 'PTQBlock' );
 				}
 				$post_meta_markup .= '</dt>';
-				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '<dd class="wp-block-ptqblock__meta-description">' . get_the_date( '', $post ) . '</dd>';
 				$post_meta_markup .= '</div>';
 			}
 
 			if ( $attributes['displayUpdateDate'] ) {
-				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<div class="wp-block-ptqblock__meta-item">';
 
-				$update_date_term_classes = 'wp-block-rptblock__meta-term';
+				$update_date_term_classes = 'wp-block-ptqblock__meta-term';
 
 				if ( $attributes['hideUpdateDateLabel'] ) {
 					$update_date_term_classes .= ' screen-reader-text';
@@ -178,17 +178,17 @@ function rptblock_render_post_types_block( $attributes ) {
 				if ( $attributes['updateDateLabel'] ) {
 					$post_meta_markup .= $attributes['updateDateLabel'];
 				} else {
-					$post_meta_markup .= esc_html__( 'Updated on:', 'RPTBlock' );
+					$post_meta_markup .= esc_html__( 'Updated on:', 'PTQBlock' );
 				}
 				$post_meta_markup .= '</dt>';
-				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_modified_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '<dd class="wp-block-ptqblock__meta-description">' . get_the_modified_date( '', $post ) . '</dd>';
 				$post_meta_markup .= '</div>';
 			}
 
 			if ( $attributes['displayAuthor'] ) {
-				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<div class="wp-block-ptqblock__meta-item">';
 
-				$author_term_classes = 'wp-block-rptblock__meta-term';
+				$author_term_classes = 'wp-block-ptqblock__meta-term';
 
 				if ( $attributes['hideAuthorLabel'] ) {
 					$author_term_classes .= ' screen-reader-text';
@@ -199,11 +199,11 @@ function rptblock_render_post_types_block( $attributes ) {
 				if ( $attributes['authorLabel'] ) {
 					$post_meta_markup .= $attributes['authorLabel'];
 				} else {
-					$post_meta_markup .= esc_html__( 'Author:', 'RPTBlock' );
+					$post_meta_markup .= esc_html__( 'Author:', 'PTQBlock' );
 				}
 
 				$post_meta_markup .= '</dt>';
-				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_author() . '</dd>';
+				$post_meta_markup .= '<dd class="wp-block-ptqblock__meta-description">' . get_the_author() . '</dd>';
 				$post_meta_markup .= '</div>';
 			}
 
@@ -216,7 +216,7 @@ function rptblock_render_post_types_block( $attributes ) {
 			$post_teaser  = $post_parts['main'];
 			$post_content = $post_parts['extended'];
 
-			$list_items_markup .= '<div class="wp-block-rptblock__content">';
+			$list_items_markup .= '<div class="wp-block-ptqblock__content">';
 
 			if ( '' !== $post_content ) {
 				$list_items_markup .= $post_teaser;
@@ -230,7 +230,7 @@ function rptblock_render_post_types_block( $attributes ) {
 		$list_items_markup .= "</li>\n";
 	}
 
-	$block_classes = 'wp-block-rptblock__list';
+	$block_classes = 'wp-block-ptqblock__list';
 
 	if ( isset( $attributes['postsLayout'] ) && 'grid' === $attributes['postsLayout'] ) {
 		$block_classes .= ' is-grid';
@@ -279,10 +279,10 @@ function rptblock_render_post_types_block( $attributes ) {
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
  * @since 0.1.0
  */
-function rptblock_block_init() {
+function ptqblock_block_init() {
 	register_block_type_from_metadata(
 		__DIR__,
-		array( 'render_callback' => 'rptblock_render_post_types_block' )
+		array( 'render_callback' => 'ptqblock_render_post_types_block' )
 	);
 }
-add_action( 'init', 'rptblock_block_init' );
+add_action( 'init', 'ptqblock_block_init' );

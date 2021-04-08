@@ -11,13 +11,13 @@ function EditorToolbar(props) {
 			<ToolbarGroup>
 				<ToolbarButton
 					icon={list}
-					title={__('List', 'RPTBlock')}
+					title={__('List', 'PTQBlock')}
 					isActive={postsLayout === 'list'}
 					onClick={() => props.setAttributes({ postsLayout: 'list' })}
 				/>
 				<ToolbarButton
 					icon={grid}
-					title={__('Grid', 'RPTBlock')}
+					title={__('Grid', 'PTQBlock')}
 					isActive={postsLayout === 'grid'}
 					onClick={() => props.setAttributes({ postsLayout: 'grid' })}
 				/>

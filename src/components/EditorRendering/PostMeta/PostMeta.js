@@ -38,19 +38,19 @@ function PostMeta(props) {
 	};
 
 	return (
-		<dl className='rptblock__meta'>
+		<dl className='ptqblock__meta'>
 			{displayPublicationDate && (
-				<div className='rptblock__meta-item'>
+				<div className='ptqblock__meta-item'>
 					<dt
 						className={
 							hidePublicationDateLabel
-								? 'rptblock__meta-term screen-reader-text'
-								: 'rptblock__meta-term'
+								? 'ptqblock__meta-term screen-reader-text'
+								: 'ptqblock__meta-term'
 						}
 					>
 						{publicationDateLabel}
 					</dt>
-					<dd className='rptblock__meta-description'>
+					<dd className='ptqblock__meta-description'>
 						<time dateTime={format('c', post.date_gmt)}>
 							{dateI18n(dateFormat, post.date_gmt)}
 						</time>
@@ -58,17 +58,17 @@ function PostMeta(props) {
 				</div>
 			)}
 			{displayUpdateDate && (
-				<div className='rptblock__meta-item'>
+				<div className='ptqblock__meta-item'>
 					<dt
 						className={
 							hideUpdateDateLabel
-								? 'rptblock__meta-term screen-reader-text'
-								: 'rptblock__meta-term'
+								? 'ptqblock__meta-term screen-reader-text'
+								: 'ptqblock__meta-term'
 						}
 					>
 						{updateDateLabel}
 					</dt>
-					<dd className='rptblock__meta-description'>
+					<dd className='ptqblock__meta-description'>
 						<time dateTime={format('c', post.modified_gmt)}>
 							{dateI18n(dateFormat, post.modified_gmt)}
 						</time>
@@ -76,17 +76,17 @@ function PostMeta(props) {
 				</div>
 			)}
 			{displayAuthor && (
-				<div className='rptblock__meta-item'>
+				<div className='ptqblock__meta-item'>
 					<dt
 						className={
 							hideAuthorLabel
-								? 'rptblock__meta-term screen-reader-text'
-								: 'rptblock__meta-term'
+								? 'ptqblock__meta-term screen-reader-text'
+								: 'ptqblock__meta-term'
 						}
 					>
 						{authorLabel}
 					</dt>
-					<dd className='rptblock__meta-description'>
+					<dd className='ptqblock__meta-description'>
 						{getAuthorName(post.author)}
 					</dd>
 				</div>

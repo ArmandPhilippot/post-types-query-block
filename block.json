@@ -1,11 +1,11 @@
 {
 	"apiVersion": 2,
-	"name": "rptblock/recent-post-types",
-	"title": "Recent Post Types Block",
-	"description": "Display a list of posts including custom post types.",
+	"name": "ptqblock/post-types-query",
+	"title": "Post Types Query Block",
+	"description": "Display a list of posts based on (custom) post types.",
 	"category": "widgets",
 	"icon": "text-page",
-	"textdomain": "RPTBlock",
+	"textdomain": "PTQBlock",
 	"supports": {
 		"html": false,
 		"align": true

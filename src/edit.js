@@ -6,7 +6,7 @@ import EditorRendering from './components/EditorRendering/EditorRendering';
 import EditorToolbar from './components/EditorToolbar/EditorToolbar';
 
 /**
- * Describe the structure of the Recent_Post_Types block in the context of the
+ * Describe the structure of the Post_Types_Query block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit

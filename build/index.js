@@ -7806,7 +7806,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 /**
- * Render a Recent_Post_Types block in the editor.
+ * Render a Post_Types_Query block in the editor.
  *
  * @since 0.1.0
  *
@@ -7836,7 +7836,7 @@ function EditorRendering(props) {
       displayListMarkers = _props$attributes.displayListMarkers;
   var blockProps = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["useBlockProps"])({
     className: classnames__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
-      rptblock__list: true,
+      ptqblock__list: true,
       'has-dates': displayPublicationDate || displayUpdateDate,
       'has-author': displayAuthor,
       'has-excerpt': displayExcerpt,
@@ -7933,32 +7933,32 @@ function EditorRendering(props) {
   if (!hasPosts) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", blockProps, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Placeholder"], {
       icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["postList"],
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Recent Posts Types', 'RPTBlock')
-    }, !Array.isArray(postsList) ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Spinner"], null) : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('No posts found.', 'RPTBlock')));
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('Recent Posts Types', 'PTQBlock')
+    }, !Array.isArray(postsList) ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Spinner"], null) : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__["__"])('No posts found.', 'PTQBlock')));
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("ul", blockProps, postsList.map(function (post, i) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", {
       key: i,
-      className: "rptblock__item"
+      className: "ptqblock__item"
     }, displayFeaturedImage && post.featured_image && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: featuredImageAlignment ? "rptblock__featured-image-wrapper align".concat(featuredImageAlignment) : 'rptblock__featured-image-wrapper'
+      className: featuredImageAlignment ? "ptqblock__featured-image-wrapper align".concat(featuredImageAlignment) : 'ptqblock__featured-image-wrapper'
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
       src: getFeaturedImageSourceUrl(post),
       alt: post.featured_image.alt_text,
-      className: "rptblock__featured-image",
+      className: "ptqblock__featured-image",
       style: {
         maxWidth: featuredImageWidth,
         maxHeight: featuredImageHeight
       }
     })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
       href: post.link,
-      className: "rptblock__link"
+      className: "ptqblock__link"
     }, post.title.raw ? post.title.raw : post.title.rendered), isPostMetaActivated() && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_PostMeta_PostMeta__WEBPACK_IMPORTED_MODULE_8__["default"], {
       attributes: props.attributes,
       post: post
     }), displayExcerpt && post.content && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: "rptblock__content"
+      className: "ptqblock__content"
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_Excerpt_Excerpt__WEBPACK_IMPORTED_MODULE_7__["default"], post)));
   }));
 }
@@ -8128,29 +8128,29 @@ function PostMeta(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dl", {
-    className: "rptblock__meta"
+    className: "ptqblock__meta"
   }, displayPublicationDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "rptblock__meta-item"
+    className: "ptqblock__meta-item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", {
-    className: hidePublicationDateLabel ? 'rptblock__meta-term screen-reader-text' : 'rptblock__meta-term'
+    className: hidePublicationDateLabel ? 'ptqblock__meta-term screen-reader-text' : 'ptqblock__meta-term'
   }, publicationDateLabel), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", {
-    className: "rptblock__meta-description"
+    className: "ptqblock__meta-description"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
     dateTime: Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])('c', post.date_gmt)
   }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["dateI18n"])(dateFormat, post.date_gmt)))), displayUpdateDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "rptblock__meta-item"
+    className: "ptqblock__meta-item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", {
-    className: hideUpdateDateLabel ? 'rptblock__meta-term screen-reader-text' : 'rptblock__meta-term'
+    className: hideUpdateDateLabel ? 'ptqblock__meta-term screen-reader-text' : 'ptqblock__meta-term'
   }, updateDateLabel), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", {
-    className: "rptblock__meta-description"
+    className: "ptqblock__meta-description"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("time", {
     dateTime: Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["format"])('c', post.modified_gmt)
   }, Object(_wordpress_date__WEBPACK_IMPORTED_MODULE_3__["dateI18n"])(dateFormat, post.modified_gmt)))), displayAuthor && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "rptblock__meta-item"
+    className: "ptqblock__meta-item"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dt", {
-    className: hideAuthorLabel ? 'rptblock__meta-term screen-reader-text' : 'rptblock__meta-term'
+    className: hideAuthorLabel ? 'ptqblock__meta-term screen-reader-text' : 'ptqblock__meta-term'
   }, authorLabel), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("dd", {
-    className: "rptblock__meta-description"
+    className: "ptqblock__meta-description"
   }, getAuthorName(post.author))));
 }
 
@@ -8191,7 +8191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * The EditorSettings function describes the structure of settings for the
- * Recent_Post_Types block in the editor.
+ * Post_Types_Query block in the editor.
  *
  * @since 0.1.0
  *
@@ -8202,14 +8202,14 @@ function EditorSettings(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["InspectorControls"], {
     key: "settings"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    id: "rptblock-controls",
-    className: "rptblock-controls"
+    id: "ptqblock-controls",
+    className: "ptqblock-controls"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["Panel"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Layout options', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Layout options', 'PTQBlock'),
     initialOpen: true
   }, props.attributes.postsLayout === 'list' && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Display list markers', 'RPTBlock'),
-    help: props.attributes.displayListMarkers ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Has list markers.', 'RPTBlock') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('No list markers.', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Display list markers', 'PTQBlock'),
+    help: props.attributes.displayListMarkers ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Has list markers.', 'PTQBlock') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('No list markers.', 'PTQBlock'),
     checked: props.attributes.displayListMarkers,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8217,7 +8217,7 @@ function EditorSettings(props) {
       });
     }
   }), props.attributes.postsLayout === 'grid' && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["RangeControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Grid columns:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Grid columns:', 'PTQBlock'),
     min: 1,
     max: 10,
     onChange: function onChange(value) {
@@ -8318,11 +8318,11 @@ function FeaturedImage(props) {
       defaultImageWidth = _useSelect.defaultImageWidth;
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Featured image', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Featured image', 'PTQBlock'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["ToggleControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Display featured image', 'RPTBlock'),
-    help: displayFeaturedImage ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Has featured image.', 'RPTBlock') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('No featured image.', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Display featured image', 'PTQBlock'),
+    help: displayFeaturedImage ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Has featured image.', 'PTQBlock') : Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('No featured image.', 'PTQBlock'),
     checked: displayFeaturedImage,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8330,7 +8330,7 @@ function FeaturedImage(props) {
       });
     }
   })), displayFeaturedImage && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", {
-    className: "rptblock-controls__legend"
+    className: "ptqblock-controls__legend"
   }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Define the featured image appearance:')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["__experimentalImageSizeControl"], {
     imageHeight: defaultImageHeight,
     imageWidth: defaultImageWidth,
@@ -8358,7 +8358,7 @@ function FeaturedImage(props) {
         featuredImageWidth: undefined
       });
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["BaseControl"].VisualLabel, null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Image alignment', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["BlockAlignmentToolbar"], {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["BaseControl"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__["BaseControl"].VisualLabel, null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Image alignment', 'PTQBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["BlockAlignmentToolbar"], {
     controls: ['left', 'center', 'right'],
     isCollapsed: false,
     isToolbar: false,
@@ -8423,7 +8423,7 @@ function Filters(props) {
     });
     var options = [{
       value: '',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('All', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('All', 'PTQBlock')
     }];
 
     if (authors) {
@@ -8545,10 +8545,10 @@ function Filters(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Filters', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Filters', 'PTQBlock'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Author:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Author:', 'PTQBlock'),
     options: getAuthorOptions(),
     value: props.attributes.selectedAuthor,
     onChange: function onChange(value) {
@@ -8557,14 +8557,14 @@ function Filters(props) {
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["FormTokenField"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Categories:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Categories:', 'PTQBlock'),
     onChange: function onChange(newArray) {
       return onCategoriesChange(newArray, categories);
     },
     suggestions: getSuggestionFrom(categories),
     value: props.attributes.selectedCategories
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["FormTokenField"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Tags:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__["__"])('Tags:', 'PTQBlock'),
     onChange: function onChange(newArray) {
       return onTagsChange(newArray, tags);
     },
@@ -8616,16 +8616,16 @@ function PostDetails(props) {
       hideUpdateDateLabel = _props$attributes.hideUpdateDateLabel,
       hideAuthorLabel = _props$attributes.hideAuthorLabel;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Posts details', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Posts details', 'PTQBlock'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", {
-    className: "rptblock-controls__fieldset"
+    className: "ptqblock-controls__fieldset"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", {
-    className: "rptblock-controls__legend"
-  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Select the information you want to display.', 'RPTBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", {
-    className: "rptblock-controls__fieldset"
+    className: "ptqblock-controls__legend"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Select the information you want to display.', 'PTQBlock')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", {
+    className: "ptqblock-controls__fieldset"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'PTQBlock'),
     checked: displayPublicationDate,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8633,7 +8633,7 @@ function PostDetails(props) {
       });
     }
   })), displayPublicationDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide publication date label?', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide publication date label?', 'PTQBlock'),
     checked: hidePublicationDateLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8641,7 +8641,7 @@ function PostDetails(props) {
       });
     }
   }), !hidePublicationDateLabel && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace publication date label', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace publication date label', 'PTQBlock'),
     value: publicationDateLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8649,9 +8649,9 @@ function PostDetails(props) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", {
-    className: "rptblock-controls__fieldset"
+    className: "ptqblock-controls__fieldset"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'PTQBlock'),
     checked: displayUpdateDate,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8659,7 +8659,7 @@ function PostDetails(props) {
       });
     }
   })), displayUpdateDate && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide update date label?', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide update date label?', 'PTQBlock'),
     checked: hideUpdateDateLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8667,7 +8667,7 @@ function PostDetails(props) {
       });
     }
   }), !hideUpdateDateLabel && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace update date label', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace update date label', 'PTQBlock'),
     value: updateDateLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8675,9 +8675,9 @@ function PostDetails(props) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("fieldset", {
-    className: "rptblock-controls__fieldset"
+    className: "ptqblock-controls__fieldset"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("legend", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'PTQBlock'),
     checked: displayAuthor,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8685,7 +8685,7 @@ function PostDetails(props) {
       });
     }
   })), displayAuthor && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide author label?', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Hide author label?', 'PTQBlock'),
     checked: hideAuthorLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8693,7 +8693,7 @@ function PostDetails(props) {
       });
     }
   }), !hideAuthorLabel && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["TextControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace author label', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Replace author label', 'PTQBlock'),
     value: authorLabel,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8701,7 +8701,7 @@ function PostDetails(props) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["CheckboxControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Post excerpt', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Post excerpt', 'PTQBlock'),
     checked: displayExcerpt,
     onChange: function onChange(value) {
       return props.setAttributes({
@@ -8768,10 +8768,10 @@ function PostTypes(props) {
   };
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Post Types', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Post Types', 'PTQBlock'),
     initialOpen: true
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Post type to display:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Post type to display:', 'PTQBlock'),
     onChange: function onChange(value) {
       return props.setAttributes({
         selectedPostType: value
@@ -8780,7 +8780,7 @@ function PostTypes(props) {
     options: getPostTypesOptions(),
     value: props.attributes.selectedPostType
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["RangeControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Number of posts to display:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Number of posts to display:', 'PTQBlock'),
     min: 1,
     max: 30,
     onChange: function onChange(value) {
@@ -8817,22 +8817,22 @@ __webpack_require__.r(__webpack_exports__);
 
 function Sort(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelBody"], {
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Sort', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Sort', 'PTQBlock'),
     initialOpen: false
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order by', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order by', 'PTQBlock'),
     options: [{
       value: 'author',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Author', 'PTQBlock')
     }, {
       value: 'date',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Publication date', 'PTQBlock')
     }, {
       value: 'modified',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Update date', 'PTQBlock')
     }, {
       value: 'title',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Title', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Title', 'PTQBlock')
     }],
     value: props.attributes.orderBy,
     onChange: function onChange(value) {
@@ -8841,13 +8841,13 @@ function Sort(props) {
       });
     }
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__["SelectControl"], {
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order:', 'RPTBlock'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Order:', 'PTQBlock'),
     options: [{
       value: 'asc',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Ascending', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Ascending', 'PTQBlock')
     }, {
       value: 'desc',
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Descending', 'RPTBlock')
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Descending', 'PTQBlock')
     }],
     value: props.attributes.order,
     onChange: function onChange(value) {
@@ -8890,7 +8890,7 @@ function EditorToolbar(props) {
   var postsLayout = props.attributes.postsLayout;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["BlockControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToolbarGroup"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToolbarButton"], {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["list"],
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('List', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('List', 'PTQBlock'),
     isActive: postsLayout === 'list',
     onClick: function onClick() {
       return props.setAttributes({
@@ -8899,7 +8899,7 @@ function EditorToolbar(props) {
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToolbarButton"], {
     icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["grid"],
-    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Grid', 'RPTBlock'),
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Grid', 'PTQBlock'),
     isActive: postsLayout === 'grid',
     onClick: function onClick() {
       return props.setAttributes({
@@ -8941,7 +8941,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Describe the structure of the Recent_Post_Types block in the context of the
+ * Describe the structure of the Post_Types_Query block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
@@ -8996,13 +8996,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Recent_Post_Types block type definition.
+ * Post_Types_Query block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  * @since 0.1.0
  */
 
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('rptblock/recent-post-types', {
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('ptqblock/post-types-query', {
   apiVersion: 2,
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save: function save() {

@@ -18,7 +18,7 @@ function Filters(props) {
 	const getAuthorOptions = () => {
 		const authors = useSelect(select => select('core').getAuthors());
 
-		let options = [{ value: '', label: __('All', 'RPTBlock') }];
+		let options = [{ value: '', label: __('All', 'PTQBlock') }];
 
 		if (authors) {
 			authors.forEach(author => {
@@ -138,10 +138,10 @@ function Filters(props) {
 	};
 
 	return (
-		<PanelBody title={__('Filters', 'RPTBlock')} initialOpen={false}>
+		<PanelBody title={__('Filters', 'PTQBlock')} initialOpen={false}>
 			<PanelRow>
 				<SelectControl
-					label={__('Author:', 'RPTBlock')}
+					label={__('Author:', 'PTQBlock')}
 					options={getAuthorOptions()}
 					value={props.attributes.selectedAuthor}
 					onChange={value =>
@@ -153,7 +153,7 @@ function Filters(props) {
 			</PanelRow>
 			<PanelRow>
 				<FormTokenField
-					label={__('Categories:', 'RPTBlock')}
+					label={__('Categories:', 'PTQBlock')}
 					onChange={newArray =>
 						onCategoriesChange(newArray, categories)
 					}
@@ -163,7 +163,7 @@ function Filters(props) {
 			</PanelRow>
 			<PanelRow>
 				<FormTokenField
-					label={__('Tags:', 'RPTBlock')}
+					label={__('Tags:', 'PTQBlock')}
 					onChange={newArray => onTagsChange(newArray, tags)}
 					suggestions={getSuggestionFrom(tags)}
 					value={props.attributes.selectedTags}
