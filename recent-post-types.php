@@ -145,7 +145,15 @@ function rptblock_render_post_types_block( $attributes ) {
 
 			if ( $attributes['displayPublicationDate'] ) {
 				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
-				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+
+				$publication_date_term_classes = 'wp-block-rptblock__meta-term';
+
+				if ( $attributes['hidePublicationDateLabel'] ) {
+					$publication_date_term_classes .= ' screen-reader-text';
+				}
+
+				$post_meta_markup .= '<dt class="' . $publication_date_term_classes . '">';
+
 				if ( $attributes['publicationDateLabel'] ) {
 					$post_meta_markup .= $attributes['publicationDateLabel'];
 				} else {
@@ -158,7 +166,15 @@ function rptblock_render_post_types_block( $attributes ) {
 
 			if ( $attributes['displayUpdateDate'] ) {
 				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
-				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+
+				$update_date_term_classes = 'wp-block-rptblock__meta-term';
+
+				if ( $attributes['hideUpdateDateLabel'] ) {
+					$update_date_term_classes .= ' screen-reader-text';
+				}
+
+				$post_meta_markup .= '<dt class="' . $update_date_term_classes . '">';
+
 				if ( $attributes['updateDateLabel'] ) {
 					$post_meta_markup .= $attributes['updateDateLabel'];
 				} else {
@@ -171,12 +187,21 @@ function rptblock_render_post_types_block( $attributes ) {
 
 			if ( $attributes['displayAuthor'] ) {
 				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
-				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+
+				$author_term_classes = 'wp-block-rptblock__meta-term';
+
+				if ( $attributes['hideAuthorLabel'] ) {
+					$author_term_classes .= ' screen-reader-text';
+				}
+
+				$post_meta_markup .= '<dt class="' . $author_term_classes . '">';
+
 				if ( $attributes['authorLabel'] ) {
 					$post_meta_markup .= $attributes['authorLabel'];
 				} else {
 					$post_meta_markup .= esc_html__( 'Author:', 'RPTBlock' );
 				}
+
 				$post_meta_markup .= '</dt>';
 				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_author() . '</dd>';
 				$post_meta_markup .= '</div>';
@@ -207,15 +232,15 @@ function rptblock_render_post_types_block( $attributes ) {
 
 	$block_classes = 'wp-block-rptblock__list';
 
-	if ( isset( $attributes['postsLayout'] ) && 'grid' === $attributes['postLayout'] ) {
+	if ( isset( $attributes['postsLayout'] ) && 'grid' === $attributes['postsLayout'] ) {
 		$block_classes .= ' is-grid';
 	}
 
-	if ( isset( $attributes['columns'] ) && 'grid' === $attributes['postLayout'] ) {
-		$block_classes .= ' columns-' . $attributes['columns'];
+	if ( isset( $attributes['gridColumns'] ) && 'grid' === $attributes['postsLayout'] ) {
+		$block_classes .= ' columns-' . $attributes['gridColumns'];
 	}
 
-	if ( isset( $attributes['postsLayout'] ) && 'list' === $attributes['postLayout'] && isset( $attributes['displayListMarkers'] ) && $attributes['displayListMarkers'] ) {
+	if ( isset( $attributes['postsLayout'] ) && 'list' === $attributes['postsLayout'] && isset( $attributes['displayListMarkers'] ) && $attributes['displayListMarkers'] ) {
 		$block_classes .= ' has-list-markers';
 	}
 

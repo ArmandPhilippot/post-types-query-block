@@ -5,6 +5,82 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-rptblock-recent-post-types {
-	// Your styles here.
+.wp-block-rptblock {
+	&__featured-image {
+		margin-bottom: 0.5em;
+
+		&.alignleft {
+			margin-right: 1em;
+		}
+
+		&.alignright {
+			margin-left: 1em;
+		}
+
+		&.aligncenter {
+			text-align: center;
+		}
+	}
+
+	&__meta,
+	&__content {
+		margin-top: 0.5em;
+	}
+
+	&__meta-item {
+		display: flex;
+		flex-flow: row wrap;
+		gap: 0.5em;
+		font-size: 0.9rem;
+	}
+
+	&__meta-description {
+		margin: 0;
+	}
+
+	&__list {
+		&:not(.has-list-markers) {
+			list-style-type: none;
+			padding-left: 0;
+		}
+
+		&.has-featured-image {
+			.wp-block-rptblock {
+				&__item {
+					clear: both;
+
+					&:not(:last-child) {
+						margin-bottom: 1em;
+					}
+				}
+			}
+		}
+
+		&.is-grid {
+			display: grid;
+			gap: 2em;
+			list-style-type: none;
+			margin-left: 0;
+			padding-left: 0;
+		}
+
+		@for $i from 1 through 10 {
+			&.columns-#{$i} {
+				grid-template-columns: repeat(#{$i}, 1fr);
+			}
+		}
+	}
+
+	.screen-reader-text {
+		border: 0;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+		width: pxToRem(1);
+		height: pxToRem(1);
+		overflow: hidden;
+		padding: 0;
+		position: absolute !important;
+		word-break: normal;
+		word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+	}
 }

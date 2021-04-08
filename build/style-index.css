@@ -4,5 +4,101 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-rptblock__featured-image {
+  margin-bottom: 0.5em;
+}
+.wp-block-rptblock__featured-image.alignleft {
+  margin-right: 1em;
+}
+.wp-block-rptblock__featured-image.alignright {
+  margin-left: 1em;
+}
+.wp-block-rptblock__featured-image.aligncenter {
+  text-align: center;
+}
+.wp-block-rptblock__meta, .wp-block-rptblock__content {
+  margin-top: 0.5em;
+}
+.wp-block-rptblock__meta-item {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5em;
+  font-size: 0.9rem;
+}
+.wp-block-rptblock__meta-description {
+  margin: 0;
+}
+.wp-block-rptblock__list:not(.has-list-markers) {
+  list-style-type: none;
+  padding-left: 0;
+}
+.wp-block-rptblock__list.has-featured-image .wp-block-rptblock__item {
+  clear: both;
+}
+.wp-block-rptblock__list.has-featured-image .wp-block-rptblock__item:not(:last-child) {
+  margin-bottom: 1em;
+}
+.wp-block-rptblock__list.is-grid {
+  display: -ms-grid;
+  display: grid;
+  gap: 2em;
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.wp-block-rptblock__list.columns-1 {
+  -ms-grid-columns: (1fr)[1];
+  grid-template-columns: repeat(1, 1fr);
+}
+.wp-block-rptblock__list.columns-2 {
+  -ms-grid-columns: (1fr)[2];
+  grid-template-columns: repeat(2, 1fr);
+}
+.wp-block-rptblock__list.columns-3 {
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+}
+.wp-block-rptblock__list.columns-4 {
+  -ms-grid-columns: (1fr)[4];
+  grid-template-columns: repeat(4, 1fr);
+}
+.wp-block-rptblock__list.columns-5 {
+  -ms-grid-columns: (1fr)[5];
+  grid-template-columns: repeat(5, 1fr);
+}
+.wp-block-rptblock__list.columns-6 {
+  -ms-grid-columns: (1fr)[6];
+  grid-template-columns: repeat(6, 1fr);
+}
+.wp-block-rptblock__list.columns-7 {
+  -ms-grid-columns: (1fr)[7];
+  grid-template-columns: repeat(7, 1fr);
+}
+.wp-block-rptblock__list.columns-8 {
+  -ms-grid-columns: (1fr)[8];
+  grid-template-columns: repeat(8, 1fr);
+}
+.wp-block-rptblock__list.columns-9 {
+  -ms-grid-columns: (1fr)[9];
+  grid-template-columns: repeat(9, 1fr);
+}
+.wp-block-rptblock__list.columns-10 {
+  -ms-grid-columns: (1fr)[10];
+  grid-template-columns: repeat(10, 1fr);
+}
+.wp-block-rptblock .screen-reader-text {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  width: pxToRem(1);
+  height: pxToRem(1);
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  word-break: normal;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
 
 /*# sourceMappingURL=style-index.css.map*/
