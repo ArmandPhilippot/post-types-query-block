@@ -3,6 +3,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import './editor.scss';
 import EditorSettings from './components/EditorSettings/EditorSettings';
 import EditorRendering from './components/EditorRendering/EditorRendering';
+import EditorToolbar from './components/EditorToolbar/EditorToolbar';
 
 /**
  * Describe the structure of the Recent_Post_Types block in the context of the
@@ -18,6 +19,10 @@ function Edit(props) {
 
 	return (
 		<div {...blockProps}>
+			<EditorToolbar
+				attributes={props.attributes}
+				setAttributes={props.setAttributes}
+			/>
 			<EditorRendering attributes={props.attributes} />
 			<EditorSettings
 				attributes={props.attributes}

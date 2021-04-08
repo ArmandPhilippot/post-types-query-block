@@ -62,6 +62,11 @@
 		}
 	}
 
+	&:not(.has-list-markers) {
+		list-style-type: none;
+		padding-left: 0;
+	}
+
 	&.has-featured-image {
 		.rptblock {
 			&__item {
@@ -71,6 +76,20 @@
 					margin-bottom: 1em;
 				}
 			}
+		}
+	}
+
+	&.is-grid {
+		display: grid;
+		gap: 1em;
+		list-style-type: none;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	@for $i from 1 through 10 {
+		&.columns-#{$i} {
+			grid-template-columns: repeat(#{$i}, 1fr);
 		}
 	}
 }

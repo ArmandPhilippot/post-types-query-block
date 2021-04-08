@@ -7,7 +7,8 @@
 	"icon": "text-page",
 	"textdomain": "RPTBlock",
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true
 	},
 	"attributes": {
 		"selectedPostType": {
@@ -94,6 +95,18 @@
 		"featuredImageWidth": {
 			"type": "number",
 			"default": null
+		},
+		"postsLayout": {
+			"type": "string",
+			"default": "list"
+		},
+		"displayListMarkers": {
+			"type": "boolean",
+			"default": true
+		},
+		"gridColumns": {
+			"type": "number",
+			"default": 3
 		}
 	},
 	"editorScript": "file:./build/index.js",

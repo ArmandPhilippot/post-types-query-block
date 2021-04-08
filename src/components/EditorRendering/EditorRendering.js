@@ -32,9 +32,13 @@ function EditorRendering(props) {
 		featuredImageSlug,
 		featuredImageHeight,
 		featuredImageWidth,
+		postsLayout,
+		gridColumns,
+		displayListMarkers,
 	} = props.attributes;
 	const blockProps = useBlockProps({
 		className: classnames({
+			rptblock__list: true,
 			'has-dates': displayPublicationDate || displayUpdateDate,
 			'has-author': displayAuthor,
 			'has-excerpt': displayExcerpt,
@@ -49,6 +53,9 @@ function EditorRendering(props) {
 				displayFeaturedImage && featuredImageAlignment === 'wide',
 			'has-featured-image--align-full':
 				displayFeaturedImage && featuredImageAlignment === 'full',
+			'has-list-markers': postsLayout === 'list' && displayListMarkers,
+			'is-grid': postsLayout === 'grid',
+			[`columns-${gridColumns}`]: postsLayout === 'grid',
 		}),
 	});
 
@@ -149,51 +156,49 @@ function EditorRendering(props) {
 	}
 
 	return (
-		<div {...blockProps}>
-			<ul className='rptblock__list'>
-				{postsList.map((post, i) => {
-					return (
-						<li key={i} className='rptblock__item'>
-							{displayFeaturedImage && post.featured_image && (
-								<div
-									className={
-										featuredImageAlignment
-											? `rptblock__featured-image-wrapper align${featuredImageAlignment}`
-											: 'rptblock__featured-image-wrapper'
-									}
-								>
-									<img
-										src={getFeaturedImageSourceUrl(post)}
-										alt={post.featured_image.alt_text}
-										className='rptblock__featured-image'
-										style={{
-											maxWidth: featuredImageWidth,
-											maxHeight: featuredImageHeight,
-										}}
-									/>
-								</div>
-							)}
-							<a href={post.link} className='rptblock__link'>
-								{post.title.raw
-									? post.title.raw
-									: post.title.rendered}
-							</a>
-							{isPostMetaActivated() && (
-								<PostMeta
-									attributes={props.attributes}
-									post={post}
+		<ul {...blockProps}>
+			{postsList.map((post, i) => {
+				return (
+					<li key={i} className='rptblock__item'>
+						{displayFeaturedImage && post.featured_image && (
+							<div
+								className={
+									featuredImageAlignment
+										? `rptblock__featured-image-wrapper align${featuredImageAlignment}`
+										: 'rptblock__featured-image-wrapper'
+								}
+							>
+								<img
+									src={getFeaturedImageSourceUrl(post)}
+									alt={post.featured_image.alt_text}
+									className='rptblock__featured-image'
+									style={{
+										maxWidth: featuredImageWidth,
+										maxHeight: featuredImageHeight,
+									}}
 								/>
-							)}
-							{displayExcerpt && post.content && (
-								<div className='rptblock__content'>
-									<Excerpt {...post} />
-								</div>
-							)}
-						</li>
-					);
-				})}
-			</ul>
-		</div>
+							</div>
+						)}
+						<a href={post.link} className='rptblock__link'>
+							{post.title.raw
+								? post.title.raw
+								: post.title.rendered}
+						</a>
+						{isPostMetaActivated() && (
+							<PostMeta
+								attributes={props.attributes}
+								post={post}
+							/>
+						)}
+						{displayExcerpt && post.content && (
+							<div className='rptblock__content'>
+								<Excerpt {...post} />
+							</div>
+						)}
+					</li>
+				);
+			})}
+		</ul>
 	);
 }
 

@@ -1,5 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { Panel } from '@wordpress/components';
+import {
+	Panel,
+	PanelBody,
+	RangeControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import PostDetails from './PostDetails/PostDetails';
 import Filters from './Filters/Filters';
@@ -20,6 +25,40 @@ function EditorSettings(props) {
 		<InspectorControls key='settings'>
 			<div id='rptblock-controls' className='rptblock-controls'>
 				<Panel>
+					<PanelBody
+						title={__('Layout options', 'RPTBlock')}
+						initialOpen={true}
+					>
+						{props.attributes.postsLayout === 'list' && (
+							<ToggleControl
+								label={__('Display list markers', 'RPTBlock')}
+								help={
+									props.attributes.displayListMarkers
+										? __('Has list markers.', 'RPTBlock')
+										: __('No list markers.', 'RPTBlock')
+								}
+								checked={props.attributes.displayListMarkers}
+								onChange={value =>
+									props.setAttributes({
+										displayListMarkers: value,
+									})
+								}
+							/>
+						)}
+						{props.attributes.postsLayout === 'grid' && (
+							<RangeControl
+								label={__('Grid columns:', 'RPTBlock')}
+								min={1}
+								max={10}
+								onChange={value =>
+									props.setAttributes({
+										gridColumns: value,
+									})
+								}
+								value={props.attributes.gridColumns}
+							/>
+						)}
+					</PanelBody>
 					<PostTypes
 						attributes={props.attributes}
 						setAttributes={props.setAttributes}
