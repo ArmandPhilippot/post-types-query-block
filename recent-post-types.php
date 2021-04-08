@@ -97,40 +97,89 @@ function rptblock_render_post_types_block( $attributes ) {
 
 	$post_types_query = get_posts( $query_args );
 
-	$list_items_markup = '<ul>';
+	$list_items_markup = '';
 
 	foreach ( $post_types_query as $post ) {
 		$post_link  = esc_url( get_permalink( $post ) );
 		$post_title = get_the_title( $post );
 
-		$list_items_markup .= '<li>';
+		$list_items_markup .= '<li class="wp-block-rptblock__item">';
 
 		if ( $attributes['displayFeaturedImage'] && has_post_thumbnail( $post ) ) {
-			$list_items_markup .= get_the_post_thumbnail( $post );
+			$image_sizes = '';
+			if ( isset( $attributes['featuredImageWidth'] ) ) {
+				$image_sizes .= sprintf( 'max-width:%spx;', $attributes['featuredImageWidth'] );
+			}
+			if ( isset( $attributes['featuredImageHeight'] ) ) {
+				$image_sizes .= sprintf( 'max-height:%spx;', $attributes['featuredImageHeight'] );
+			}
+
+			$featured_image = get_the_post_thumbnail(
+				$post,
+				$attributes['featuredImageSlug'],
+				array(
+					'style' => $image_sizes,
+				)
+			);
+
+			$featured_image_classes = 'wp-block-rptblock__featured-image';
+			if ( isset( $attributes['featuredImageAlignment'] ) ) {
+				$featured_image_classes .= ' align' . $attributes['featuredImageAlignment'];
+			}
+
+			$list_items_markup .= sprintf(
+				'<div class="%1$s">%2$s</div>',
+				$featured_image_classes,
+				$featured_image
+			);
 		}
 
 		$list_items_markup .= sprintf(
-			'<a href="%1$s">%2$s</a>',
+			'<a href="%1$s" class="wp-block-rptblock__link">%2$s</a>',
 			$post_link,
 			$post_title
 		);
 
 		if ( $attributes['displayPublicationDate'] || $attributes['displayUpdateDate'] || $attributes['displayAuthor'] ) {
-			$post_meta_markup = '<dl>';
+			$post_meta_markup = '<dl class="wp-block-rptblock__meta">';
 
 			if ( $attributes['displayPublicationDate'] ) {
-				$post_meta_markup .= '<dt>' . esc_html__( 'Published at', 'RPTBlock' ) . '</dt>';
-				$post_meta_markup .= '<dd>' . get_the_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+				if ( $attributes['publicationDateLabel'] ) {
+					$post_meta_markup .= $attributes['publicationDateLabel'];
+				} else {
+					$post_meta_markup .= esc_html__( 'Published on:', 'RPTBlock' );
+				}
+				$post_meta_markup .= '</dt>';
+				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '</div>';
 			}
 
 			if ( $attributes['displayUpdateDate'] ) {
-				$post_meta_markup .= '<dt>' . esc_html__( 'Updated at', 'RPTBlock' ) . '</dt>';
-				$post_meta_markup .= '<dd>' . get_the_modified_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+				if ( $attributes['updateDateLabel'] ) {
+					$post_meta_markup .= $attributes['updateDateLabel'];
+				} else {
+					$post_meta_markup .= esc_html__( 'Updated on:', 'RPTBlock' );
+				}
+				$post_meta_markup .= '</dt>';
+				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_modified_date( '', $post ) . '</dd>';
+				$post_meta_markup .= '</div>';
 			}
 
 			if ( $attributes['displayAuthor'] ) {
-				$post_meta_markup .= '<dt>' . esc_html__( 'Author:', 'RPTBlock' ) . '</dt>';
-				$post_meta_markup .= '<dd>' . get_the_author() . '</dd>';
+				$post_meta_markup .= '<div class="wp-block-rptblock__meta-item">';
+				$post_meta_markup .= '<dt class="wp-block-rptblock__meta-term">';
+				if ( $attributes['authorLabel'] ) {
+					$post_meta_markup .= $attributes['authorLabel'];
+				} else {
+					$post_meta_markup .= esc_html__( 'Author:', 'RPTBlock' );
+				}
+				$post_meta_markup .= '</dt>';
+				$post_meta_markup .= '<dd class="wp-block-rptblock__meta-description">' . get_the_author() . '</dd>';
+				$post_meta_markup .= '</div>';
 			}
 
 			$post_meta_markup  .= '</dl>';
@@ -138,18 +187,62 @@ function rptblock_render_post_types_block( $attributes ) {
 		}
 
 		if ( $attributes['displayExcerpt'] ) {
-			$list_items_markup .= get_the_content( '', true, $post );
+			$post_parts   = get_extended( $post->post_content );
+			$post_teaser  = $post_parts['main'];
+			$post_content = $post_parts['extended'];
+
+			$list_items_markup .= '<div class="wp-block-rptblock__content">';
+
+			if ( '' !== $post_content ) {
+				$list_items_markup .= $post_teaser;
+			} else {
+				$list_items_markup .= get_the_excerpt( $post );
+			}
+
+			$list_items_markup .= '</div>';
 		}
 
 		$list_items_markup .= "</li>\n";
 	}
 
-	$list_items_markup .= '</ul>';
+	$block_classes = 'wp-block-rptblock__list';
 
-	$wrapper_attributes = get_block_wrapper_attributes();
+	if ( isset( $attributes['postsLayout'] ) && 'grid' === $attributes['postLayout'] ) {
+		$block_classes .= ' is-grid';
+	}
+
+	if ( isset( $attributes['columns'] ) && 'grid' === $attributes['postLayout'] ) {
+		$block_classes .= ' columns-' . $attributes['columns'];
+	}
+
+	if ( isset( $attributes['postsLayout'] ) && 'list' === $attributes['postLayout'] && isset( $attributes['displayListMarkers'] ) && $attributes['displayListMarkers'] ) {
+		$block_classes .= ' has-list-markers';
+	}
+
+	if ( ( isset( $attributes['displayPublicationDate'] ) && $attributes['displayPublicationDate'] ) || ( isset( $attributes['displayUpdateDate'] ) && $attributes['displayUpdateDate'] ) ) {
+		$block_classes .= ' has-dates';
+	}
+
+	if ( isset( $attributes['displayAuthor'] ) && $attributes['displayAuthor'] ) {
+		$block_classes .= ' has-author';
+	}
+
+	if ( isset( $attributes['displayExcerpt'] ) && $attributes['displayExcerpt'] ) {
+		$block_classes .= ' has-excerpt';
+	}
+
+	if ( isset( $attributes['displayFeaturedImage'] ) && $attributes['displayFeaturedImage'] ) {
+		$block_classes .= ' has-featured-image';
+
+		if ( isset( $attributes['featuredImageAlignment'] ) ) {
+			$block_classes .= ' has-featured-image--align' . $attributes['featuredImageAlignment'];
+		}
+	}
+
+	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $block_classes ) );
 
 	return sprintf(
-		'<div %1$s>%2$s</div>',
+		'<ul %1$s>%2$s</ul>',
 		$wrapper_attributes,
 		$list_items_markup
 	);
