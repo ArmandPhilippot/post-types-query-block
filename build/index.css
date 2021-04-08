@@ -3,5 +3,49 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.rptblock-controls__legend {
+  margin-bottom: 1em;
+}
+.rptblock-controls__fieldset fieldset:not(:last-child) {
+  margin-bottom: 1.5em;
+}
+.rptblock-controls .components-base-control {
+  margin-bottom: 0.5em;
+}
+.rptblock-controls .components-base-control__label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.wp-block-rptblock-recent-post-types .rptblock__featured-image-wrapper {
+  margin-bottom: 0.5em;
+}
+.wp-block-rptblock-recent-post-types .rptblock__featured-image-wrapper.alignleft {
+  margin-right: 1em;
+}
+.wp-block-rptblock-recent-post-types .rptblock__featured-image-wrapper.alignright {
+  margin-left: 1em;
+}
+.wp-block-rptblock-recent-post-types .rptblock__featured-image-wrapper.aligncenter {
+  text-align: center;
+}
+.wp-block-rptblock-recent-post-types .rptblock__meta, .wp-block-rptblock-recent-post-types .rptblock__content {
+  margin-top: 0.5em;
+}
+.wp-block-rptblock-recent-post-types .rptblock__meta-item {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5em;
+  font-size: 0.9rem;
+}
+.wp-block-rptblock-recent-post-types .rptblock__meta-description {
+  margin: 0;
+}
+.wp-block-rptblock-recent-post-types.has-featured-image .rptblock__item {
+  clear: both;
+}
+.wp-block-rptblock-recent-post-types.has-featured-image .rptblock__item:not(:last-child) {
+  margin-bottom: 1em;
+}
 
 /*# sourceMappingURL=index.css.map*/

@@ -5,6 +5,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import Excerpt from './Excerpt/Excerpt';
 import PostMeta from './PostMeta/PostMeta';
+import classnames from 'classnames';
 
 /**
  * Render a Recent_Post_Types block in the editor.
@@ -14,7 +15,6 @@ import PostMeta from './PostMeta/PostMeta';
  * @returns {WPElement} Element to render.
  */
 function EditorRendering(props) {
-	const blockProps = useBlockProps();
 	const {
 		selectedPostType,
 		selectedCategories,
@@ -28,7 +28,29 @@ function EditorRendering(props) {
 		displayAuthor,
 		displayFeaturedImage,
 		displayExcerpt,
+		featuredImageAlignment,
+		featuredImageSlug,
+		featuredImageHeight,
+		featuredImageWidth,
 	} = props.attributes;
+	const blockProps = useBlockProps({
+		className: classnames({
+			'has-dates': displayPublicationDate || displayUpdateDate,
+			'has-author': displayAuthor,
+			'has-excerpt': displayExcerpt,
+			'has-featured-image': displayFeaturedImage,
+			'has-featured-image--align-left':
+				displayFeaturedImage && featuredImageAlignment === 'left',
+			'has-featured-image--align-right':
+				displayFeaturedImage && featuredImageAlignment === 'right',
+			'has-featured-image--align-center':
+				displayFeaturedImage && featuredImageAlignment === 'center',
+			'has-featured-image--align-wide':
+				displayFeaturedImage && featuredImageAlignment === 'wide',
+			'has-featured-image--align-full':
+				displayFeaturedImage && featuredImageAlignment === 'full',
+		}),
+	});
 
 	/**
 	 * Check if the post metadata (like publication date) are required.
@@ -96,6 +118,17 @@ function EditorRendering(props) {
 		}
 	});
 
+	const getFeaturedImageSourceUrl = post => {
+		const sourceUrl = post.featured_image.media_details.sizes[
+			featuredImageSlug
+		]
+			? post.featured_image.media_details.sizes[featuredImageSlug]
+					.source_url
+			: post.featured_image.source_url;
+
+		return sourceUrl;
+	};
+
 	const hasPosts = Array.isArray(postsList) && postsList.length;
 
 	if (!hasPosts) {
@@ -117,17 +150,30 @@ function EditorRendering(props) {
 
 	return (
 		<div {...blockProps}>
-			<ul>
+			<ul className='rptblock__list'>
 				{postsList.map((post, i) => {
 					return (
-						<li key={i}>
+						<li key={i} className='rptblock__item'>
 							{displayFeaturedImage && post.featured_image && (
-								<img
-									src={post.featured_image.source_url}
-									alt={post.featured_image.alt_text}
-								/>
+								<div
+									className={
+										featuredImageAlignment
+											? `rptblock__featured-image-wrapper align${featuredImageAlignment}`
+											: 'rptblock__featured-image-wrapper'
+									}
+								>
+									<img
+										src={getFeaturedImageSourceUrl(post)}
+										alt={post.featured_image.alt_text}
+										className='rptblock__featured-image'
+										style={{
+											maxWidth: featuredImageWidth,
+											maxHeight: featuredImageHeight,
+										}}
+									/>
+								</div>
 							)}
-							<a href={post.link}>
+							<a href={post.link} className='rptblock__link'>
 								{post.title.raw
 									? post.title.raw
 									: post.title.rendered}
@@ -139,7 +185,7 @@ function EditorRendering(props) {
 								/>
 							)}
 							{displayExcerpt && post.content && (
-								<div>
+								<div className='rptblock__content'>
 									<Excerpt {...post} />
 								</div>
 							)}

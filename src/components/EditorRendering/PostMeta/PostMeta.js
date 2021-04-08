@@ -1,5 +1,5 @@
 import { useSelect } from '@wordpress/data';
-import { __ } from '@wordpress/i18n';
+import { _x, __ } from '@wordpress/i18n';
 import { dateI18n, format, __experimentalGetSettings } from '@wordpress/date';
 
 function PostMeta(props) {
@@ -9,6 +9,12 @@ function PostMeta(props) {
 		displayPublicationDate,
 		displayUpdateDate,
 		displayAuthor,
+		publicationDateLabel,
+		updateDateLabel,
+		authorLabel,
+		hidePublicationDateLabel,
+		hideUpdateDateLabel,
+		hideAuthorLabel,
 	} = props.attributes;
 	const post = props.post;
 
@@ -32,11 +38,19 @@ function PostMeta(props) {
 	};
 
 	return (
-		<dl>
+		<dl className='rptblock__meta'>
 			{displayPublicationDate && (
-				<div>
-					<dt>{__('Publication date:', 'RPTBlock')}</dt>
-					<dd>
+				<div className='rptblock__meta-item'>
+					<dt
+						className={
+							hidePublicationDateLabel
+								? 'rptblock__meta-term screen-reader-text'
+								: 'rptblock__meta-term'
+						}
+					>
+						{publicationDateLabel}
+					</dt>
+					<dd className='rptblock__meta-description'>
 						<time dateTime={format('c', post.date_gmt)}>
 							{dateI18n(dateFormat, post.date_gmt)}
 						</time>
@@ -44,9 +58,17 @@ function PostMeta(props) {
 				</div>
 			)}
 			{displayUpdateDate && (
-				<div>
-					<dt>{__('Update date:', 'RPTBlock')}</dt>
-					<dd>
+				<div className='rptblock__meta-item'>
+					<dt
+						className={
+							hideUpdateDateLabel
+								? 'rptblock__meta-term screen-reader-text'
+								: 'rptblock__meta-term'
+						}
+					>
+						{updateDateLabel}
+					</dt>
+					<dd className='rptblock__meta-description'>
 						<time dateTime={format('c', post.modified_gmt)}>
 							{dateI18n(dateFormat, post.modified_gmt)}
 						</time>
@@ -54,9 +76,19 @@ function PostMeta(props) {
 				</div>
 			)}
 			{displayAuthor && (
-				<div>
-					<dt>{__('Author:', 'RPTBlock')}</dt>
-					<dd>{getAuthorName(post.author)}</dd>
+				<div className='rptblock__meta-item'>
+					<dt
+						className={
+							hideAuthorLabel
+								? 'rptblock__meta-term screen-reader-text'
+								: 'rptblock__meta-term'
+						}
+					>
+						{authorLabel}
+					</dt>
+					<dd className='rptblock__meta-description'>
+						{getAuthorName(post.author)}
+					</dd>
 				</div>
 			)}
 		</dl>

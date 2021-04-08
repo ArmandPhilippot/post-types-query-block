@@ -54,6 +54,46 @@
 		"displayExcerpt": {
 			"type": "boolean",
 			"default": false
+		},
+		"publicationDateLabel": {
+			"type": "string",
+			"default": "Published on:"
+		},
+		"updateDateLabel": {
+			"type": "string",
+			"default": "Updated on:"
+		},
+		"authorLabel": {
+			"type": "string",
+			"default": "By:"
+		},
+		"hidePublicationDateLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideUpdateDateLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideAuthorLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"featuredImageAlignment": {
+			"type": "string",
+			"enum": ["left", "center", "right"]
+		},
+		"featuredImageSlug": {
+			"type": "string",
+			"default": "thumbnail"
+		},
+		"featuredImageHeight": {
+			"type": "number",
+			"default": null
+		},
+		"featuredImageWidth": {
+			"type": "number",
+			"default": null
 		}
 	},
 	"editorScript": "file:./build/index.js",

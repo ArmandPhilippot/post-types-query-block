@@ -4,6 +4,73 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+.rptblock-controls {
+	&__legend {
+		margin-bottom: 1em;
+	}
+
+	&__fieldset {
+		fieldset {
+			&:not(:last-child) {
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+
+	.components-base-control {
+		margin-bottom: 0.5em;
+
+		&__label {
+			display: block;
+			margin-bottom: 0.5em;
+		}
+	}
+}
+
 .wp-block-rptblock-recent-post-types {
-	// Your styles here.
+	.rptblock {
+		&__featured-image-wrapper {
+			margin-bottom: 0.5em;
+
+			&.alignleft {
+				margin-right: 1em;
+			}
+
+			&.alignright {
+				margin-left: 1em;
+			}
+
+			&.aligncenter {
+				text-align: center;
+			}
+		}
+
+		&__meta,
+		&__content {
+			margin-top: 0.5em;
+		}
+
+		&__meta-item {
+			display: flex;
+			flex-flow: row wrap;
+			gap: 0.5em;
+			font-size: 0.9rem;
+		}
+
+		&__meta-description {
+			margin: 0;
+		}
+	}
+
+	&.has-featured-image {
+		.rptblock {
+			&__item {
+				clear: both;
+
+				&:not(:last-child) {
+					margin-bottom: 1em;
+				}
+			}
+		}
+	}
 }
