@@ -71,7 +71,16 @@
 		.ptqblock {
 			&__item {
 				clear: both;
+			}
+		}
+	}
 
+	&.has-dates,
+	&.has-author,
+	&.has-featured-image,
+	&.has-excerpt {
+		.ptqblock {
+			&__item {
 				&:not(:last-child) {
 					margin-bottom: 1em;
 				}
@@ -83,7 +92,6 @@
 		display: grid;
 		gap: 2em;
 		list-style-type: none;
-		margin-left: 0;
 		padding-left: 0;
 	}
 

@@ -203,7 +203,7 @@ function ptqblock_render_post_types_block( $attributes ) {
 				}
 
 				$post_meta_markup .= '</dt>';
-				$post_meta_markup .= '<dd class="wp-block-ptqblock__meta-description">' . get_the_author() . '</dd>';
+				$post_meta_markup .= '<dd class="wp-block-ptqblock__meta-description">' . get_the_author_meta( 'display_name', $post->post_author ) . '</dd>';
 				$post_meta_markup .= '</div>';
 			}
 
