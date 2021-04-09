@@ -25,7 +25,7 @@ function Excerpt(post) {
 	 * @since 0.1.0
 	 *
 	 * @param {String} content The raw content obtained from a WP post object.
-	 * @returns The sanitized content.
+	 * @returns {String} The sanitized content.
 	 */
 	const getTeaser = content => {
 		const splitContent = content.split('<!-- wp:more -->');
@@ -45,7 +45,7 @@ function Excerpt(post) {
 	 * @since 0.1.0
 	 *
 	 * @param {String} excerpt The rendered excerpt obtained from a WP post object.
-	 * @returns The sanitized excerpt.
+	 * @returns {String} The sanitized excerpt.
 	 */
 	const sanitizeExcerpt = excerpt => {
 		const excerptElement = document.createElement('div');
@@ -73,7 +73,7 @@ function Excerpt(post) {
 	 * @since 0.1.0
 	 *
 	 * @param {Object} postObject A WP post object.
-	 * @returns The excerpt to display.
+	 * @returns {String} The excerpt to display.
 	 */
 	const getExcerpt = postObject => {
 		let content = '';

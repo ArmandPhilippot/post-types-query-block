@@ -1,6 +1,13 @@
 import { PanelBody, PanelRow, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Render the sorting settings block used to reorder the post types.
+ *
+ * @since 0.1.0
+ *
+ * @returns {WPElement} Element to render.
+ */
 function Sort(props) {
 	return (
 		<PanelBody title={__('Sort', 'PTQBlock')} initialOpen={false}>

@@ -7,13 +7,20 @@ import {
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
+/**
+ * Render the settings block used to filter the post types.
+ *
+ * @since 0.1.0
+ *
+ * @returns {WPElement} Element to render.
+ */
 function Filters(props) {
 	/**
 	 * Retrieve the existing authors.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @returns An array of author names.
+	 * @returns {Array} An array of author names.
 	 */
 	const getAuthorOptions = () => {
 		const authors = useSelect(select => select('core').getAuthors());
@@ -46,7 +53,7 @@ function Filters(props) {
 	 * @since 0.1.0
 	 *
 	 * @param {Array} termArray An array of term objects like category or tag.
-	 * @returns An array containing only terms name.
+	 * @returns {Array} An array containing only terms name.
 	 */
 	const getSuggestionFrom = termArray => {
 		let suggestions = [];
@@ -65,7 +72,7 @@ function Filters(props) {
 	 *
 	 * @param {Array} newArray Values obtained from the input.
 	 * @param {Array} termArray The array of term objects to compare with.
-	 * @returns An array containing only the existing terms.
+	 * @returns {Array} An array containing only the existing terms.
 	 */
 	const checkTermExistence = (newArray, termArray) => {
 		const filteredTerms = termArray.filter(availableTerm => {
@@ -86,7 +93,7 @@ function Filters(props) {
 	 * @since 0.1.0
 	 *
 	 * @param {Array} objectsArray The array to modify.
-	 * @returns An array of objects with a new property `value`.
+	 * @returns {Array} An array of objects with a new property `value`.
 	 */
 	const updateObjectProps = objectsArray => {
 		const updatedArray = objectsArray.map(({ name, ...prevProps }) => ({

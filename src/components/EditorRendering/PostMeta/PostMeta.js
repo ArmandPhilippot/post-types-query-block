@@ -24,7 +24,7 @@ function PostMeta(props) {
 	 * @since 0.1.0
 	 *
 	 * @param {Int} authorId Author Id.
-	 * @returns An author name matching the id.
+	 * @returns {String} An author name matching the id.
 	 */
 	const getAuthorName = authorId => {
 		let authorName = '';

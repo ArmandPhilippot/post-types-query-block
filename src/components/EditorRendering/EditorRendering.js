@@ -36,6 +36,7 @@ function EditorRendering(props) {
 		gridColumns,
 		displayListMarkers,
 	} = props.attributes;
+
 	const blockProps = useBlockProps({
 		className: classnames({
 			ptqblock__list: true,
@@ -91,6 +92,8 @@ function EditorRendering(props) {
 
 	/**
 	 * Retrieve an array of posts based on editor settings.
+	 *
+	 * @since 0.1.0
 	 */
 	const postsList = useSelect(select => {
 		const { getEntityRecords, getMedia } = select('core');
@@ -125,6 +128,14 @@ function EditorRendering(props) {
 		}
 	});
 
+	/**
+	 * Retrieve the source url from the post object based on featured image slug.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param {Object} post The post object with featured_image property.
+	 * @returns {String} The source url to use.
+	 */
 	const getFeaturedImageSourceUrl = post => {
 		const sourceUrl = post.featured_image.media_details.sizes[
 			featuredImageSlug
@@ -143,7 +154,7 @@ function EditorRendering(props) {
 			<div {...blockProps}>
 				<Placeholder
 					icon={postList}
-					label={__('Recent Posts Types', 'PTQBlock')}
+					label={__('Post Types Query Block', 'PTQBlock')}
 				>
 					{!Array.isArray(postsList) ? (
 						<Spinner />
