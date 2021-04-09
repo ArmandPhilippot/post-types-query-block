@@ -24,11 +24,10 @@
 		"init": "gulp initBlock && gulp renameFiles",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
-		"make-pot": "wp i18n make-pot . languages/post-types-query.pot --exclude=vendor/ --skip-js",
+		"make-pot": "wp i18n make-pot . languages/PTQBlock.pot --exclude=vendor/",
 		"packages-update": "wp-scripts packages-update",
 		"release": "standard-version -a",
 		"start": "wp-scripts start",
-		"translate": "gulp translate",
 		"zip": "gulp zipBlock"
 	},
 	"dependencies": {
