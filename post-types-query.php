@@ -45,11 +45,20 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	$ptqblock_dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
 	$ptqblock_dotenv->safeLoad();
 	$ptqblock_current_env = $_ENV['WP_BLOCK_ENV'];
+}
 
-	if ( 'development' === $ptqblock_current_env ) {
-		wp_register_script( 'livereload', 'http://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
-		wp_enqueue_script( 'livereload' );
-	}
+/**
+ * Enqueue LiveReload if local install
+ *
+ * Assumes livereload.js is in the root folder of your local site
+ */
+function ptqblock_enqueue_livereload() {
+	wp_enqueue_script( 'livereload', 'http://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
+}
+
+if ( isset( $ptqblock_current_env ) && 'development' === $ptqblock_current_env ) {
+	add_action( 'wp_enqueue_scripts', 'ptqblock_enqueue_livereload' );
+	add_action( 'admin_enqueue_scripts', 'ptqblock_enqueue_livereload' );
 }
 
 /**
