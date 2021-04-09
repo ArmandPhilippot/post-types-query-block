@@ -80,11 +80,11 @@ function ptqblock_render_post_types_block( $attributes ) {
 		'suppress_filters'    => false,
 	);
 
-	if ( $attributes['selectedAuthor'] ) {
+	if ( isset( $attributes['selectedAuthor'] ) ) {
 		$query_args += array( 'author' => $attributes['selectedAuthor'] );
 	}
 
-	if ( $attributes['selectedCategories'] ) {
+	if ( isset( $attributes['selectedCategories'] ) ) {
 		$selected_categories = array();
 
 		foreach ( $attributes['selectedCategories'] as $category ) {
@@ -94,7 +94,7 @@ function ptqblock_render_post_types_block( $attributes ) {
 		$query_args += array( 'category__in' => $selected_categories );
 	}
 
-	if ( $attributes['selectedTags'] ) {
+	if ( isset( $attributes['selectedTags'] ) ) {
 		$selected_tags = array();
 
 		foreach ( $attributes['selectedTags'] as $tag ) {

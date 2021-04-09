@@ -91,8 +91,8 @@
   clip: rect(1px 1px 1px 1px);
   /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px);
-  width: pxToRem(1);
-  height: pxToRem(1);
+  width: 1px;
+  height: 1px;
   overflow: hidden;
   padding: 0;
   position: absolute !important;
