@@ -1,10 +1,5 @@
-import {
-	CheckboxControl,
-	PanelBody,
-	PanelRow,
-	TextControl,
-} from '@wordpress/components';
-import { _x, __ } from '@wordpress/i18n';
+import { CheckboxControl, PanelBody, TextControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Define the settings to display post meta and content.
@@ -29,151 +24,149 @@ function PostDetails(props) {
 
 	return (
 		<PanelBody title={__('Posts details', 'PTQBlock')} initialOpen={false}>
-			<PanelRow>
+			<fieldset className='ptqblock-controls__fieldset'>
+				<legend className='ptqblock-controls__legend'>
+					{__(
+						'Select the information you want to display.',
+						'PTQBlock'
+					)}
+				</legend>
 				<fieldset className='ptqblock-controls__fieldset'>
-					<legend className='ptqblock-controls__legend'>
-						{__(
-							'Select the information you want to display.',
-							'PTQBlock'
-						)}
+					<legend>
+						<CheckboxControl
+							label={__('Publication date', 'PTQBlock')}
+							checked={displayPublicationDate}
+							onChange={value =>
+								props.setAttributes({
+									displayPublicationDate: value,
+								})
+							}
+						/>
 					</legend>
-					<fieldset className='ptqblock-controls__fieldset'>
-						<legend>
+					{displayPublicationDate && (
+						<div>
 							<CheckboxControl
-								label={__('Publication date', 'PTQBlock')}
-								checked={displayPublicationDate}
+								label={__(
+									'Hide publication date label?',
+									'PTQBlock'
+								)}
+								checked={hidePublicationDateLabel}
 								onChange={value =>
 									props.setAttributes({
-										displayPublicationDate: value,
+										hidePublicationDateLabel: value,
 									})
 								}
 							/>
-						</legend>
-						{displayPublicationDate && (
-							<div>
-								<CheckboxControl
+							{!hidePublicationDateLabel && (
+								<TextControl
 									label={__(
-										'Hide publication date label?',
+										'Replace publication date label',
 										'PTQBlock'
 									)}
-									checked={hidePublicationDateLabel}
+									value={publicationDateLabel}
 									onChange={value =>
 										props.setAttributes({
-											hidePublicationDateLabel: value,
+											publicationDateLabel: value,
 										})
 									}
 								/>
-								{!hidePublicationDateLabel && (
-									<TextControl
-										label={__(
-											'Replace publication date label',
-											'PTQBlock'
-										)}
-										value={publicationDateLabel}
-										onChange={value =>
-											props.setAttributes({
-												publicationDateLabel: value,
-											})
-										}
-									/>
-								)}
-							</div>
-						)}
-					</fieldset>
-					<fieldset className='ptqblock-controls__fieldset'>
-						<legend>
-							<CheckboxControl
-								label={__('Update date', 'PTQBlock')}
-								checked={displayUpdateDate}
-								onChange={value =>
-									props.setAttributes({
-										displayUpdateDate: value,
-									})
-								}
-							/>
-						</legend>
-						{displayUpdateDate && (
-							<div>
-								<CheckboxControl
-									label={__(
-										'Hide update date label?',
-										'PTQBlock'
-									)}
-									checked={hideUpdateDateLabel}
-									onChange={value =>
-										props.setAttributes({
-											hideUpdateDateLabel: value,
-										})
-									}
-								/>
-								{!hideUpdateDateLabel && (
-									<TextControl
-										label={__(
-											'Replace update date label',
-											'PTQBlock'
-										)}
-										value={updateDateLabel}
-										onChange={value =>
-											props.setAttributes({
-												updateDateLabel: value,
-											})
-										}
-									/>
-								)}
-							</div>
-						)}
-					</fieldset>
-					<fieldset className='ptqblock-controls__fieldset'>
-						<legend>
-							<CheckboxControl
-								label={__('Author', 'PTQBlock')}
-								checked={displayAuthor}
-								onChange={value =>
-									props.setAttributes({
-										displayAuthor: value,
-									})
-								}
-							/>
-						</legend>
-						{displayAuthor && (
-							<div>
-								<CheckboxControl
-									label={__('Hide author label?', 'PTQBlock')}
-									checked={hideAuthorLabel}
-									onChange={value =>
-										props.setAttributes({
-											hideAuthorLabel: value,
-										})
-									}
-								/>
-								{!hideAuthorLabel && (
-									<TextControl
-										label={__(
-											'Replace author label',
-											'PTQBlock'
-										)}
-										value={authorLabel}
-										onChange={value =>
-											props.setAttributes({
-												authorLabel: value,
-											})
-										}
-									/>
-								)}
-							</div>
-						)}
-					</fieldset>
-					<CheckboxControl
-						label={__('Post excerpt', 'PTQBlock')}
-						checked={displayExcerpt}
-						onChange={value =>
-							props.setAttributes({
-								displayExcerpt: value,
-							})
-						}
-					/>
+							)}
+						</div>
+					)}
 				</fieldset>
-			</PanelRow>
+				<fieldset className='ptqblock-controls__fieldset'>
+					<legend>
+						<CheckboxControl
+							label={__('Update date', 'PTQBlock')}
+							checked={displayUpdateDate}
+							onChange={value =>
+								props.setAttributes({
+									displayUpdateDate: value,
+								})
+							}
+						/>
+					</legend>
+					{displayUpdateDate && (
+						<div>
+							<CheckboxControl
+								label={__(
+									'Hide update date label?',
+									'PTQBlock'
+								)}
+								checked={hideUpdateDateLabel}
+								onChange={value =>
+									props.setAttributes({
+										hideUpdateDateLabel: value,
+									})
+								}
+							/>
+							{!hideUpdateDateLabel && (
+								<TextControl
+									label={__(
+										'Replace update date label',
+										'PTQBlock'
+									)}
+									value={updateDateLabel}
+									onChange={value =>
+										props.setAttributes({
+											updateDateLabel: value,
+										})
+									}
+								/>
+							)}
+						</div>
+					)}
+				</fieldset>
+				<fieldset className='ptqblock-controls__fieldset'>
+					<legend>
+						<CheckboxControl
+							label={__('Author', 'PTQBlock')}
+							checked={displayAuthor}
+							onChange={value =>
+								props.setAttributes({
+									displayAuthor: value,
+								})
+							}
+						/>
+					</legend>
+					{displayAuthor && (
+						<div>
+							<CheckboxControl
+								label={__('Hide author label?', 'PTQBlock')}
+								checked={hideAuthorLabel}
+								onChange={value =>
+									props.setAttributes({
+										hideAuthorLabel: value,
+									})
+								}
+							/>
+							{!hideAuthorLabel && (
+								<TextControl
+									label={__(
+										'Replace author label',
+										'PTQBlock'
+									)}
+									value={authorLabel}
+									onChange={value =>
+										props.setAttributes({
+											authorLabel: value,
+										})
+									}
+								/>
+							)}
+						</div>
+					)}
+				</fieldset>
+				<CheckboxControl
+					label={__('Post excerpt', 'PTQBlock')}
+					checked={displayExcerpt}
+					onChange={value =>
+						props.setAttributes({
+							displayExcerpt: value,
+						})
+					}
+				/>
+			</fieldset>
 		</PanelBody>
 	);
 }

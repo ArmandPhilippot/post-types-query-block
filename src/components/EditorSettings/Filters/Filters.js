@@ -1,7 +1,6 @@
 import {
 	FormTokenField,
 	PanelBody,
-	PanelRow,
 	SelectControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -146,36 +145,28 @@ function Filters(props) {
 
 	return (
 		<PanelBody title={__('Filters', 'PTQBlock')} initialOpen={false}>
-			<PanelRow>
-				<SelectControl
-					label={__('Author:', 'PTQBlock')}
-					options={getAuthorOptions()}
-					value={props.attributes.selectedAuthor}
-					onChange={value =>
-						props.setAttributes({
-							selectedAuthor: value,
-						})
-					}
-				/>
-			</PanelRow>
-			<PanelRow>
-				<FormTokenField
-					label={__('Categories:', 'PTQBlock')}
-					onChange={newArray =>
-						onCategoriesChange(newArray, categories)
-					}
-					suggestions={getSuggestionFrom(categories)}
-					value={props.attributes.selectedCategories}
-				/>
-			</PanelRow>
-			<PanelRow>
-				<FormTokenField
-					label={__('Tags:', 'PTQBlock')}
-					onChange={newArray => onTagsChange(newArray, tags)}
-					suggestions={getSuggestionFrom(tags)}
-					value={props.attributes.selectedTags}
-				/>
-			</PanelRow>
+			<SelectControl
+				label={__('Author:', 'PTQBlock')}
+				options={getAuthorOptions()}
+				value={props.attributes.selectedAuthor}
+				onChange={value =>
+					props.setAttributes({
+						selectedAuthor: value,
+					})
+				}
+			/>
+			<FormTokenField
+				label={__('Categories:', 'PTQBlock')}
+				onChange={newArray => onCategoriesChange(newArray, categories)}
+				suggestions={getSuggestionFrom(categories)}
+				value={props.attributes.selectedCategories}
+			/>
+			<FormTokenField
+				label={__('Tags:', 'PTQBlock')}
+				onChange={newArray => onTagsChange(newArray, tags)}
+				suggestions={getSuggestionFrom(tags)}
+				value={props.attributes.selectedTags}
+			/>
 		</PanelBody>
 	);
 }

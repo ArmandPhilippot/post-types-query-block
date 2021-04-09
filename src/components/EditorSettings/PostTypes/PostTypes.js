@@ -1,9 +1,4 @@
-import {
-	PanelBody,
-	PanelRow,
-	RangeControl,
-	SelectControl,
-} from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -37,29 +32,25 @@ function PostTypes(props) {
 
 	return (
 		<PanelBody title={__('Post Types', 'PTQBlock')} initialOpen={true}>
-			<PanelRow>
-				<SelectControl
-					label={__('Post type to display:', 'PTQBlock')}
-					onChange={value =>
-						props.setAttributes({
-							selectedPostType: value,
-						})
-					}
-					options={getPostTypesOptions()}
-					value={props.attributes.selectedPostType}
-				/>
-			</PanelRow>
-			<PanelRow>
-				<RangeControl
-					label={__('Number of posts to display:', 'PTQBlock')}
-					min={1}
-					max={30}
-					onChange={value =>
-						props.setAttributes({ postsToDisplay: value })
-					}
-					value={props.attributes.postsToDisplay}
-				/>
-			</PanelRow>
+			<SelectControl
+				label={__('Post type to display:', 'PTQBlock')}
+				onChange={value =>
+					props.setAttributes({
+						selectedPostType: value,
+					})
+				}
+				options={getPostTypesOptions()}
+				value={props.attributes.selectedPostType}
+			/>
+			<RangeControl
+				label={__('Number of posts to display:', 'PTQBlock')}
+				min={1}
+				max={30}
+				onChange={value =>
+					props.setAttributes({ postsToDisplay: value })
+				}
+				value={props.attributes.postsToDisplay}
+			/>
 		</PanelBody>
 	);
 }

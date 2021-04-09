@@ -3,12 +3,7 @@ import {
 	__experimentalImageSizeControl as ImageSizeControl,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
-import {
-	BaseControl,
-	PanelBody,
-	PanelRow,
-	ToggleControl,
-} from '@wordpress/components';
+import { BaseControl, PanelBody, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -56,72 +51,68 @@ function FeaturedImage(props) {
 
 	return (
 		<PanelBody title={__('Featured image', 'PTQBlock')} initialOpen={false}>
-			<PanelRow>
-				<ToggleControl
-					label={__('Display featured image', 'PTQBlock')}
-					help={
-						displayFeaturedImage
-							? __('Has featured image.', 'PTQBlock')
-							: __('No featured image.', 'PTQBlock')
-					}
-					checked={displayFeaturedImage}
-					onChange={value =>
-						props.setAttributes({
-							displayFeaturedImage: value,
-						})
-					}
-				/>
-			</PanelRow>
+			<ToggleControl
+				label={__('Display featured image', 'PTQBlock')}
+				help={
+					displayFeaturedImage
+						? __('Has featured image.', 'PTQBlock')
+						: __('No featured image.', 'PTQBlock')
+				}
+				checked={displayFeaturedImage}
+				onChange={value =>
+					props.setAttributes({
+						displayFeaturedImage: value,
+					})
+				}
+			/>
 			{displayFeaturedImage && (
-				<PanelRow>
-					<fieldset>
-						<legend className='ptqblock-controls__legend'>
-							{__('Define the featured image appearance:')}
-						</legend>
-						<ImageSizeControl
-							imageHeight={defaultImageHeight}
-							imageWidth={defaultImageWidth}
-							imageSizeOptions={imageSizeOptions}
-							width={featuredImageWidth}
-							height={featuredImageHeight}
-							slug={featuredImageSlug}
-							onChange={value => {
-								const newSizes = {};
-								if (value.hasOwnProperty('width')) {
-									newSizes.featuredImageWidth = value.width;
-								}
-								if (value.hasOwnProperty('height')) {
-									newSizes.featuredImageHeight = value.height;
-								}
-								props.setAttributes(newSizes);
-							}}
-							onChangeImage={value =>
+				<fieldset>
+					<legend className='ptqblock-controls__legend'>
+						{__('Define the featured image appearance:')}
+					</legend>
+					<ImageSizeControl
+						imageHeight={defaultImageHeight}
+						imageWidth={defaultImageWidth}
+						imageSizeOptions={imageSizeOptions}
+						width={featuredImageWidth}
+						height={featuredImageHeight}
+						slug={featuredImageSlug}
+						onChange={value => {
+							const newSizes = {};
+							if (value.hasOwnProperty('width')) {
+								newSizes.featuredImageWidth = value.width;
+							}
+							if (value.hasOwnProperty('height')) {
+								newSizes.featuredImageHeight = value.height;
+							}
+							props.setAttributes(newSizes);
+						}}
+						onChangeImage={value =>
+							props.setAttributes({
+								featuredImageSlug: value,
+								featuredImageHeight: undefined,
+								featuredImageWidth: undefined,
+							})
+						}
+					/>
+					<BaseControl>
+						<BaseControl.VisualLabel>
+							{__('Image alignment', 'PTQBlock')}
+						</BaseControl.VisualLabel>
+						<BlockAlignmentToolbar
+							controls={['left', 'center', 'right']}
+							isCollapsed={false}
+							isToolbar={false}
+							isToolbarButton={false}
+							onChange={value =>
 								props.setAttributes({
-									featuredImageSlug: value,
-									featuredImageHeight: undefined,
-									featuredImageWidth: undefined,
+									featuredImageAlignment: value,
 								})
 							}
+							value={featuredImageAlignment}
 						/>
-						<BaseControl>
-							<BaseControl.VisualLabel>
-								{__('Image alignment', 'PTQBlock')}
-							</BaseControl.VisualLabel>
-							<BlockAlignmentToolbar
-								controls={['left', 'center', 'right']}
-								isCollapsed={false}
-								isToolbar={false}
-								isToolbarButton={false}
-								onChange={value =>
-									props.setAttributes({
-										featuredImageAlignment: value,
-									})
-								}
-								value={featuredImageAlignment}
-							/>
-						</BaseControl>
-					</fieldset>
-				</PanelRow>
+					</BaseControl>
+				</fieldset>
 			)}
 		</PanelBody>
 	);
