@@ -3,6 +3,13 @@ import { BlockControls } from '@wordpress/block-editor';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { grid, list } from '@wordpress/icons';
 
+/**
+ * Add layout settings to the toolbar above the block in the editor.
+ *
+ * @since 0.1.0
+ *
+ * @returns {WPElement} Element to render.
+ */
 function EditorToolbar(props) {
 	const { postsLayout } = props.attributes;
 

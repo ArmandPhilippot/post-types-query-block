@@ -53,7 +53,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 /**
- * Render the RPT Block on server.
+ * Render the Post_Types_Query Block on server.
  *
  * @param array $attributes The block attributes.
  * @return string Returns the post content with block added.

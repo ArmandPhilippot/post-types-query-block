@@ -10,6 +10,8 @@ import { __ } from '@wordpress/i18n';
  * @returns {WPElement} Element to render.
  */
 function PostTypes(props) {
+	const { selectedPostType, postsToDisplay } = props.attributes;
+
 	const getPostTypesOptions = () => {
 		const availablePosTypes = useSelect(select =>
 			select('core').getPostTypes()
@@ -40,7 +42,7 @@ function PostTypes(props) {
 					})
 				}
 				options={getPostTypesOptions()}
-				value={props.attributes.selectedPostType}
+				value={selectedPostType}
 			/>
 			<RangeControl
 				label={__('Number of posts to display:', 'PTQBlock')}
@@ -49,7 +51,7 @@ function PostTypes(props) {
 				onChange={value =>
 					props.setAttributes({ postsToDisplay: value })
 				}
-				value={props.attributes.postsToDisplay}
+				value={postsToDisplay}
 			/>
 		</PanelBody>
 	);

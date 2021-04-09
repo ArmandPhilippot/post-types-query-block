@@ -35,7 +35,7 @@
 .wp-block-ptqblock__list.has-featured-image .wp-block-ptqblock__item {
   clear: both;
 }
-.wp-block-ptqblock__list.has-featured-image .wp-block-ptqblock__item:not(:last-child) {
+.wp-block-ptqblock__list.has-dates .wp-block-ptqblock__item:not(:last-child), .wp-block-ptqblock__list.has-author .wp-block-ptqblock__item:not(:last-child), .wp-block-ptqblock__list.has-featured-image .wp-block-ptqblock__item:not(:last-child), .wp-block-ptqblock__list.has-excerpt .wp-block-ptqblock__item:not(:last-child) {
   margin-bottom: 1em;
 }
 .wp-block-ptqblock__list.is-grid {

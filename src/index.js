@@ -11,5 +11,4 @@ import './style.scss';
 registerBlockType('ptqblock/post-types-query', {
 	apiVersion: 2,
 	edit: Edit,
-	save: () => null,
 });

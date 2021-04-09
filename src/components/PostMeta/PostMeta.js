@@ -2,6 +2,13 @@ import { useSelect } from '@wordpress/data';
 import { _x, __ } from '@wordpress/i18n';
 import { dateI18n, format, __experimentalGetSettings } from '@wordpress/date';
 
+/**
+ * Render a the post meta in the editor.
+ *
+ * @since 0.1.0
+ *
+ * @returns {WPElement} Element to render.
+ */
 function PostMeta(props) {
 	const authorsList = useSelect(select => select('core').getAuthors());
 	const dateFormat = __experimentalGetSettings().formats.date;

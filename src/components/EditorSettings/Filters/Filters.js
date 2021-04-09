@@ -4,7 +4,7 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { __ } from '@wordpress/i18n';
+import { _x, __ } from '@wordpress/i18n';
 
 /**
  * Render the settings block used to filter the post types.
@@ -24,7 +24,9 @@ function Filters(props) {
 	const getAuthorOptions = () => {
 		const authors = useSelect(select => select('core').getAuthors());
 
-		let options = [{ value: '', label: __('All', 'PTQBlock') }];
+		let options = [
+			{ value: '', label: _x('All', 'author selection', 'PTQBlock') },
+		];
 
 		if (authors) {
 			authors.forEach(author => {
@@ -148,6 +150,7 @@ function Filters(props) {
 			<SelectControl
 				label={__('Author:', 'PTQBlock')}
 				options={getAuthorOptions()}
+				help={__('Include only the selected author.', 'PTQBlock')}
 				value={props.attributes.selectedAuthor}
 				onChange={value =>
 					props.setAttributes({

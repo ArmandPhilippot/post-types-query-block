@@ -9,6 +9,8 @@ import { __ } from '@wordpress/i18n';
  * @returns {WPElement} Element to render.
  */
 function Sort(props) {
+	const { order, orderBy } = props.attributes;
+
 	return (
 		<PanelBody title={__('Sort', 'PTQBlock')} initialOpen={false}>
 			<SelectControl
@@ -31,7 +33,7 @@ function Sort(props) {
 						label: __('Title', 'PTQBlock'),
 					},
 				]}
-				value={props.attributes.orderBy}
+				value={orderBy}
 				onChange={value =>
 					props.setAttributes({
 						orderBy: value,
@@ -50,7 +52,7 @@ function Sort(props) {
 						label: __('Descending', 'PTQBlock'),
 					},
 				]}
-				value={props.attributes.order}
+				value={order}
 				onChange={value =>
 					props.setAttributes({
 						order: value,
