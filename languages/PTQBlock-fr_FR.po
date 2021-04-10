@@ -5,201 +5,208 @@ msgstr ""
 "Project-Id-Version: Post Types Query Block 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/recent-post-types-"
 "block\n"
-"POT-Creation-Date: 2021-04-09 18:31+0200\n"
-"PO-Revision-Date: 2021-04-09 18:37+0200\n"
+"POT-Creation-Date: 2021-04-10 16:17+0200\n"
+"PO-Revision-Date: 2021-04-10 16:19+0200\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Armand Philippot <contact@armandphilippot.com>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
 "X-Domain: PTQBlock\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:53
-msgid "Featured image"
-msgstr "Image à la une"
+#: post-types-query.php:171
+msgid "Published on:"
+msgstr "Publié le :"
 
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:55
-msgid "Display featured image"
-msgstr "Afficher l'image à la une"
+#: post-types-query.php:192
+msgid "Updated on:"
+msgstr "Mis à jour le :"
 
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:58
-msgid "Has featured image."
-msgstr "Possède une image à la une."
-
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:59
-msgid "No featured image."
-msgstr "Aucune image à la une."
-
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:71
-msgid "Define the featured image appearance:"
-msgstr "Définir l'apparence de l'image à la une :"
-
-#: components/EditorSettings/FeaturedImage/FeaturedImage.js:100
-msgid "Image alignment"
-msgstr "Alignement de l'image"
-
-#: components/EditorSettings/Filters/Filters.js:28
-msgid "All"
-msgstr "Tous"
-
-#: components/EditorSettings/Filters/Filters.js:149
-msgid "Filters"
-msgstr "Filtres"
-
-#: components/EditorSettings/Filters/Filters.js:151
+#: post-types-query.php:213
+#: src/components/EditorSettings/Filters/Filters.js:151
 msgid "Author:"
 msgstr "Auteur :"
 
-#: components/EditorSettings/Filters/Filters.js:153
+#: post-types-query.php:307 src/edit.js:157 src/index.js:14
+msgid "Post Types Query Block"
+msgstr "Bloc de Requête de Types d'Articles"
+
+#: post-types-query.php:308 src/index.js:16
+msgid "Display a list of posts based on (custom) post types."
+msgstr ""
+"Affiche une liste d'articles basée sur les types d'articles (personnalisés)."
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:53
+msgid "Featured image"
+msgstr "Image à la une"
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:55
+msgid "Display featured image"
+msgstr "Afficher l'image à la une"
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:58
+msgid "Has featured image."
+msgstr "Possède une image à la une."
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:59
+msgid "No featured image."
+msgstr "Aucune image à la une."
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:71
+msgid "Define the featured image appearance:"
+msgstr "Définir l'apparence de l'image à la une :"
+
+#: src/components/EditorSettings/FeaturedImage/FeaturedImage.js:100
+msgid "Image alignment"
+msgstr "Alignement de l'image"
+
+#: src/components/EditorSettings/Filters/Filters.js:28
+msgid "All"
+msgstr "Tous"
+
+#: src/components/EditorSettings/Filters/Filters.js:149
+msgid "Filters"
+msgstr "Filtres"
+
+#: src/components/EditorSettings/Filters/Filters.js:153
 msgid "Include only the selected author."
 msgstr "Inclure uniquement l'auteur sélectionné."
 
-#: components/EditorSettings/Filters/Filters.js:162
+#: src/components/EditorSettings/Filters/Filters.js:162
 msgid "Categories:"
 msgstr "Catégories :"
 
-#: components/EditorSettings/Filters/Filters.js:168
+#: src/components/EditorSettings/Filters/Filters.js:168
 msgid "Tags:"
 msgstr "Étiquettes :"
 
-#: components/EditorSettings/LayoutOptions/LayoutOptions.js:15
+#: src/components/EditorSettings/LayoutOptions/LayoutOptions.js:15
 msgid "Layout options"
 msgstr "Options d'affichage"
 
-#: components/EditorSettings/LayoutOptions/LayoutOptions.js:18
+#: src/components/EditorSettings/LayoutOptions/LayoutOptions.js:18
 msgid "Display list markers"
 msgstr "Affiche les marqueurs de liste"
 
-#: components/EditorSettings/LayoutOptions/LayoutOptions.js:21
+#: src/components/EditorSettings/LayoutOptions/LayoutOptions.js:21
 msgid "Has list markers."
 msgstr "Possède les marqueurs de liste."
 
-#: components/EditorSettings/LayoutOptions/LayoutOptions.js:22
+#: src/components/EditorSettings/LayoutOptions/LayoutOptions.js:22
 msgid "No list markers."
 msgstr "Aucun marqueur de liste."
 
-#: components/EditorSettings/LayoutOptions/LayoutOptions.js:34
+#: src/components/EditorSettings/LayoutOptions/LayoutOptions.js:34
 msgid "Grid columns:"
 msgstr "Colonnes de la grille :"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:26
+#: src/components/EditorSettings/PostDetails/PostDetails.js:26
 msgid "Posts details"
 msgstr "Détails des articles"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:30
+#: src/components/EditorSettings/PostDetails/PostDetails.js:30
 msgid "Select the information you want to display."
 msgstr "Sélectionnez les informations que vous souhaitez afficher."
 
-#: components/EditorSettings/PostDetails/PostDetails.js:37
-#: components/EditorSettings/Sort/Sort.js:25
+#: src/components/EditorSettings/PostDetails/PostDetails.js:37
+#: src/components/EditorSettings/Sort/Sort.js:25
 msgid "Publication date"
 msgstr "Date de publication"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:50
+#: src/components/EditorSettings/PostDetails/PostDetails.js:50
 msgid "Hide publication date label?"
 msgstr "Masquer le label de la date de publication ?"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:63
+#: src/components/EditorSettings/PostDetails/PostDetails.js:63
 msgid "Replace publication date label"
 msgstr "Remplacer le label de la date de publication"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:80
-#: components/EditorSettings/Sort/Sort.js:29
+#: src/components/EditorSettings/PostDetails/PostDetails.js:80
+#: src/components/EditorSettings/Sort/Sort.js:29
 msgid "Update date"
 msgstr "Date de mise à jour"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:93
+#: src/components/EditorSettings/PostDetails/PostDetails.js:93
 msgid "Hide update date label?"
 msgstr "Masquer le label de la date de mise à jour ?"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:106
+#: src/components/EditorSettings/PostDetails/PostDetails.js:106
 msgid "Replace update date label"
 msgstr "Remplacer le label de la date de mise à jour"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:123
-#: components/EditorSettings/Sort/Sort.js:21
+#: src/components/EditorSettings/PostDetails/PostDetails.js:123
+#: src/components/EditorSettings/Sort/Sort.js:21
 msgid "Author"
 msgstr "Auteur"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:135
+#: src/components/EditorSettings/PostDetails/PostDetails.js:135
 msgid "Hide author label?"
 msgstr "Masquer le label de l'auteur ?"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:146
+#: src/components/EditorSettings/PostDetails/PostDetails.js:146
 msgid "Replace author label"
 msgstr "Remplacer le label de l'auteur"
 
-#: components/EditorSettings/PostDetails/PostDetails.js:161
+#: src/components/EditorSettings/PostDetails/PostDetails.js:161
 msgid "Post excerpt"
 msgstr "Extrait de l'article"
 
-#: components/EditorSettings/PostTypes/PostTypes.js:36
+#: src/components/EditorSettings/PostTypes/PostTypes.js:36
 msgid "Post Types"
 msgstr "Types d'article"
 
-#: components/EditorSettings/PostTypes/PostTypes.js:38
+#: src/components/EditorSettings/PostTypes/PostTypes.js:38
 msgid "Post type to display:"
 msgstr "Type d'article à afficher :"
 
-#: components/EditorSettings/PostTypes/PostTypes.js:48
+#: src/components/EditorSettings/PostTypes/PostTypes.js:48
 msgid "Number of posts to display:"
 msgstr "Nombre d'articles à afficher :"
 
-#: components/EditorSettings/Sort/Sort.js:15
+#: src/components/EditorSettings/Sort/Sort.js:15
 msgid "Sort"
 msgstr "Tri"
 
-#: components/EditorSettings/Sort/Sort.js:17
+#: src/components/EditorSettings/Sort/Sort.js:17
 msgid "Order by"
 msgstr "Trier par"
 
-#: components/EditorSettings/Sort/Sort.js:33
+#: src/components/EditorSettings/Sort/Sort.js:33
 msgid "Title"
 msgstr "Titre"
 
-#: components/EditorSettings/Sort/Sort.js:44
+#: src/components/EditorSettings/Sort/Sort.js:44
 msgid "Order:"
 msgstr "Ordre :"
 
-#: components/EditorSettings/Sort/Sort.js:48
+#: src/components/EditorSettings/Sort/Sort.js:48
 msgid "Ascending"
 msgstr "Croissant"
 
-#: components/EditorSettings/Sort/Sort.js:52
+#: src/components/EditorSettings/Sort/Sort.js:52
 msgid "Descending"
 msgstr "Décroissant"
 
-#: components/EditorToolbar/EditorToolbar.js:21
+#: src/components/EditorToolbar/EditorToolbar.js:21
 msgid "List"
 msgstr "Liste"
 
-#: components/EditorToolbar/EditorToolbar.js:27
+#: src/components/EditorToolbar/EditorToolbar.js:27
 msgid "Grid"
 msgstr "Grille"
 
-#: edit.js:157
-msgid "Post Types Query Block"
-msgstr "Post Types Query Block"
-
-#: edit.js:162
+#: src/edit.js:162
 msgid "No posts found."
 msgstr "Aucun article trouvé."
 
 #~ msgid "https://github.com/armandphilippot/post-types-query-block"
 #~ msgstr "https://github.com/armandphilippot/post-types-query-block"
 
-#~ msgid "Display a list of posts based on (custom) post types."
-#~ msgstr ""
-#~ "Affiche une liste d'articles basée sur les types d'articles "
-#~ "(personnalisés)."
-
 #~ msgid "Armand Philippot"
 #~ msgstr "Armand Philippot"
 
 #~ msgid "https://www.armandphilippot.com/"
 #~ msgstr "https://www.armandphilippot.com/"
-
-#~ msgid "Published on:"
-#~ msgstr "Publié le :"

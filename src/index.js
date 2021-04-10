@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 import './style.scss';
 
@@ -10,5 +11,10 @@ import './style.scss';
  */
 registerBlockType('ptqblock/post-types-query', {
 	apiVersion: 2,
+	title: __('Post Types Query Block', 'PTQBlock'),
+	description: __(
+		'Display a list of posts based on (custom) post types.',
+		'PTQBlock'
+	),
 	edit: Edit,
 });

@@ -48,9 +48,9 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 }
 
 /**
- * Enqueue LiveReload if local install
+ * Enqueue LiveReload for development purpose.
  *
- * Assumes livereload.js is in the root folder of your local site
+ * @since 0.1.0
  */
 function ptqblock_enqueue_livereload() {
 	wp_enqueue_script( 'livereload', 'http://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
@@ -63,6 +63,8 @@ if ( isset( $ptqblock_current_env ) && 'development' === $ptqblock_current_env )
 
 /**
  * Render the Post_Types_Query Block on server.
+ *
+ * @since 0.1.0
  *
  * @param array $attributes The block attributes.
  * @return string Returns the post content with block added.
@@ -289,9 +291,63 @@ function ptqblock_render_post_types_block( $attributes ) {
  * @since 0.1.0
  */
 function ptqblock_block_init() {
+	$asset_file = include plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+
+	wp_register_script(
+		'ptqblock-i18n',
+		plugins_url( 'build/index.js', __FILE__ ),
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		true
+	);
+
 	register_block_type_from_metadata(
 		__DIR__,
-		array( 'render_callback' => 'ptqblock_render_post_types_block' )
+		array(
+			'title'           => __( 'Post Types Query Block', 'PTQBlock' ),
+			'description'     => __( 'Display a list of posts based on (custom) post types.', 'PTQBlock' ),
+			'script'          => 'ptqblock-i18n',
+			'editor_script'   => 'ptqblock-i18n',
+			'render_callback' => 'ptqblock_render_post_types_block',
+		)
 	);
 }
 add_action( 'init', 'ptqblock_block_init' );
+
+/**
+ * Load text domain files
+ *
+ * @since 0.1.0
+ */
+function ptqblock_load_textdomain() {
+	load_plugin_textdomain( 'PTQBlock', false, plugin_dir_path( __FILE__ ) . 'languages' );
+}
+add_action( 'plugins_loaded', 'ptqblock_load_textdomain' );
+
+/**
+ * Enqueue admin translation scripts
+ *
+ * @since 0.1.0
+ */
+function ptqblock_enqueue_admin_scripts() {
+	wp_set_script_translations(
+		'ptqblock-i18n',
+		'PTQBlock',
+		plugin_dir_path( __FILE__ ) . 'languages'
+	);
+}
+add_action( 'admin_enqueue_scripts', 'ptqblock_enqueue_admin_scripts' );
+
+/**
+ * Enqueue translation scripts
+ *
+ * @since 0.1.0
+ */
+function ptqblock_enqueue_scripts() {
+	wp_set_script_translations(
+		'ptqblock-i18n',
+		'PTQBlock',
+		plugin_dir_path( __FILE__ ) . 'languages'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'ptqblock_enqueue_scripts' );
