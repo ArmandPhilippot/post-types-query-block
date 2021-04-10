@@ -23,9 +23,7 @@ if (myDotenv.error) {
 module.exports = {
 	bump: {
 		php: {
-			src:
-				process.env.WP_BLOCK_PACKAGE_CAPITALIZE.toLowerCase() +
-				'.php',
+			src: process.env.WP_BLOCK_PACKAGE_CAPITALIZE.toLowerCase() + '.php',
 			dest: './',
 		},
 		txt: {
@@ -35,16 +33,16 @@ module.exports = {
 	},
 	init: {
 		src: [
-      'block.json',
+			'block.json',
 			'composer.json',
 			'package.json',
 			'phpcs.xml',
 			'readme.txt',
 			'./**/*.php',
 			'!vendor/**/*.php',
-      'src/index.js',
-      'src/style.scss',
-      'src/editor.scss',
+			'src/index.js',
+			'src/style.scss',
+			'src/editor.scss',
 		],
 		dest: './',
 		authorName: process.env.WP_BLOCK_AUTHOR_NAME,
@@ -95,7 +93,7 @@ module.exports = {
 			'!package.json',
 			'!package-lock.json',
 			'!phpcs.xml',
-			'!webpack.config.json',
+			'!webpack.config.js',
 		],
 		dest: './',
 	},
