@@ -16,7 +16,7 @@
  * Plugin Name:       Post Types Query Block
  * Plugin URI:        https://github.com/armandphilippot/post-types-query-block
  * Description:       Display a list of posts based on (custom) post types.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Armand Philippot
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PTQBLOCK_VERSION', '0.1.0' );
+define( 'PTQBLOCK_VERSION', '1.0.0' );
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
