@@ -62,7 +62,7 @@ function zipBlock(done) {
 /**
  * Task: `bumpPHP`
  *
- * Copy package.json version in functions.php.
+ * Copy package.json version in main plugin file.
  */
 function bumpPHP(done) {
 	return pipeline(

@@ -84,9 +84,8 @@ function Edit(props) {
 		return selectedTermsId;
 	};
 
-	const { postTypesOptions, postsList } = useSelect(select => {
-		const { getEntityRecords, getMedia, getPostTypes } = select('core');
-		const availablePostTypes = getPostTypes();
+	const postsList = useSelect(select => {
+		const { getEntityRecords, getMedia } = select('core');
 		const categoriesId = getTermsId(selectedCategories);
 		const tagsId = getTermsId(selectedTags);
 		const posts = getEntityRecords('postType', selectedPostType, {
@@ -98,22 +97,15 @@ function Edit(props) {
 			tags: tagsId,
 		});
 
-		return {
-			postTypesOptions: !Array.isArray(availablePostTypes)
-				? availablePostTypes
-				: availablePostTypes.filter(
-						postType => postType.rest_base !== 'blocks'
-				  ),
-			postsList: !Array.isArray(posts)
-				? posts
-				: posts.map(post => {
-						if (!post.featured_media) return post;
+		return !Array.isArray(posts)
+			? posts
+			: posts.map(post => {
+					if (!post.featured_media) return post;
 
-						const image = getMedia(post.featured_media);
+					const image = getMedia(post.featured_media);
 
-						return { ...post, featured_image: image };
-				  }),
-		};
+					return { ...post, featured_image: image };
+			  });
 	});
 
 	/**
