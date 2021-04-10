@@ -3,7 +3,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import { Placeholder, Spinner } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { postList } from '@wordpress/icons';
+import { ReactComponent as BlockIcon } from './images/ptqblock-icon.svg';
 import EditorSettings from './components/EditorSettings/EditorSettings';
 import EditorToolbar from './components/EditorToolbar/EditorToolbar';
 import Excerpt from './components/Excerpt/Excerpt';
@@ -153,7 +153,7 @@ function Edit(props) {
 			<div {...blockProps}>
 				<EditorToolbar {...props} />
 				<Placeholder
-					icon={postList}
+					icon={<BlockIcon style={{ width: 30, height: 30 }} />}
 					label={__('Post Types Query Block', 'PTQBlock')}
 				>
 					{!Array.isArray(postsList) ? (

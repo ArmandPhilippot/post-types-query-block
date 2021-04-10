@@ -4,7 +4,6 @@
 	"title": "Post Types Query Block",
 	"description": "Display a list of posts based on (custom) post types.",
 	"category": "widgets",
-	"icon": "text-page",
 	"textdomain": "PTQBlock",
 	"supports": {
 		"html": false,

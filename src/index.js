@@ -2,6 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 import './style.scss';
+import { ReactComponent as BlockIcon } from './images/ptqblock-icon.svg';
 
 /**
  * Post_Types_Query block type definition.
@@ -16,5 +17,7 @@ registerBlockType('ptqblock/post-types-query', {
 		'Display a list of posts based on (custom) post types.',
 		'PTQBlock'
 	),
+	icon: <BlockIcon />,
+	example: {},
 	edit: Edit,
 });
