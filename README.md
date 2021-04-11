@@ -26,13 +26,15 @@ You can use Composer to install this plugin as a dependency if you use custom in
 ```
 {
 "require": {
-    "armandphilippot/post-types-query-block": "dev-master"
+    "armandphilippot/post-types-query-block": "dev-main"
 }
 "repositories": [{
     "type": "git",
     "url": "git@github.com:ArmandPhilippot/post-types-query.git"
 }]
 ```
+
+You can specify the version by adding the corresponding tag: `dev-main#v1.0.0`.
 
 ### Manual install
 
