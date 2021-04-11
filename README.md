@@ -30,7 +30,7 @@ You can use Composer to install this plugin as a dependency if you use custom in
 }
 "repositories": [{
     "type": "git",
-    "url": "git@github.com:ArmandPhilippot/post-types-query-block.git"
+    "url": "git@github.com:ArmandPhilippot/post-types-query.git"
 }]
 ```
 
