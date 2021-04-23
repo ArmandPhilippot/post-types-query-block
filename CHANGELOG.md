@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/armandphilippot/post-types-query-block/compare/v1.0.0...v1.0.1) (2021-04-23)
+
+
+### Bug Fixes
+
+* check if WP_BLOCK_ENV exists before using it ([a2ba61e](https://github.com/armandphilippot/post-types-query-block/commit/a2ba61eae687f648d092f1fb2762bf4bd025632e))
+* prevent overflow with grid display on small screens ([6643880](https://github.com/armandphilippot/post-types-query-block/commit/6643880b7f99853bb786151618344eab67867832))
+
+
+### Docs
+
+* fix Composer install ([2a44d26](https://github.com/armandphilippot/post-types-query-block/commit/2a44d26db9d9cd0638eb7955b9959f5b1e944fcb))
+* fix Composer install and add precisions ([c88b30f](https://github.com/armandphilippot/post-types-query-block/commit/c88b30f72e31fb64884fab3433cecb0abea583e6))
+
 ## [1.0.0](https://github.com/armandphilippot/post-types-query-block/compare/v0.1.0...v1.0.0) (2021-04-10)
 
 ## 0.1.0 (2021-04-10)
