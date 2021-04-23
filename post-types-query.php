@@ -44,7 +44,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 	$ptqblock_dotenv = Dotenv\Dotenv::createImmutable( __DIR__ );
 	$ptqblock_dotenv->safeLoad();
-	$ptqblock_current_env = $_ENV['WP_BLOCK_ENV'];
+	$ptqblock_current_env = isset( $_ENV['WP_BLOCK_ENV'] ) ? $_ENV['WP_BLOCK_ENV'] : '';
 }
 
 /**
