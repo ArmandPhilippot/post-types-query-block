@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/armandphilippot/post-types-query-block/compare/v1.0.2...v1.0.3) (2021-05-01)
+
+
+### Bug Fixes
+
+* remove unnecessary translations from front-end ([ce47d41](https://github.com/armandphilippot/post-types-query-block/commit/ce47d4137a9d142e4b9404b12c2acb8c474cac3d))
+
 ### [1.0.2](https://github.com/armandphilippot/post-types-query-block/compare/v1.0.1...v1.0.2) (2021-05-01)
 
 
