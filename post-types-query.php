@@ -296,7 +296,7 @@ function ptqblock_block_init() {
 	wp_register_script(
 		'ptqblock-i18n',
 		plugins_url( 'build/index.js', __FILE__ ),
-		$asset_file['dependencies'],
+		array(),
 		$asset_file['version'],
 		true
 	);
