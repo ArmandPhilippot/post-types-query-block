@@ -53,7 +53,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * @since 0.1.0
  */
 function ptqblock_enqueue_livereload() {
-	wp_enqueue_script( 'livereload', 'http://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
+	wp_enqueue_script( 'livereload', 'https://localhost:35729/livereload.js', array(), PTQBLOCK_VERSION, true );
 }
 
 if ( isset( $ptqblock_current_env ) && 'development' === $ptqblock_current_env ) {
@@ -296,7 +296,7 @@ function ptqblock_block_init() {
 	wp_register_script(
 		'ptqblock-i18n',
 		plugins_url( 'build/index.js', __FILE__ ),
-		array(),
+		$asset_file['dependencies'],
 		$asset_file['version'],
 		true
 	);
@@ -306,7 +306,6 @@ function ptqblock_block_init() {
 		array(
 			'title'           => __( 'Post Types Query Block', 'PTQBlock' ),
 			'description'     => __( 'Display a list of posts based on (custom) post types.', 'PTQBlock' ),
-			'script'          => 'ptqblock-i18n',
 			'editor_script'   => 'ptqblock-i18n',
 			'render_callback' => 'ptqblock_render_post_types_block',
 		)
@@ -337,17 +336,3 @@ function ptqblock_enqueue_admin_scripts() {
 	);
 }
 add_action( 'admin_enqueue_scripts', 'ptqblock_enqueue_admin_scripts' );
-
-/**
- * Enqueue translation scripts
- *
- * @since 0.1.0
- */
-function ptqblock_enqueue_scripts() {
-	wp_set_script_translations(
-		'ptqblock-i18n',
-		'PTQBlock',
-		plugin_dir_path( __FILE__ ) . 'languages'
-	);
-}
-add_action( 'wp_enqueue_scripts', 'ptqblock_enqueue_scripts' );
