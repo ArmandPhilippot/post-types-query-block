@@ -59,7 +59,7 @@
 		"po2json": "1.0.0-beta-3",
 		"prettier": "npm:wp-prettier@^2.2.1-beta-1",
 		"standard-version": "^9.0.0",
-		"stylelint": "^13.8.0",
+		"stylelint": "^15.10.1",
 		"stylelint-config-prettier": "^8.0.2",
 		"stylelint-config-wordpress": "^17.0.0",
 		"vinyl-paths": "^3.0.1"
