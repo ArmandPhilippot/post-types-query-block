@@ -30,9 +30,9 @@
 		"zip": "gulp zipBlock"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^5.3.1",
+		"@wordpress/block-editor": "^12.5.0",
 		"@wordpress/blocks": "^8.0.0",
-		"@wordpress/components": "^13.0.0",
+		"@wordpress/components": "^25.3.0",
 		"@wordpress/data": "^4.27.0",
 		"@wordpress/date": "^3.14.0",
 		"@wordpress/i18n": "^3.19.0",
